@@ -1,0 +1,77 @@
+
+.background{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.bgImage{
+    width: 700px;
+    height: 70vh;
+    /* border: 1px solid black; */
+
+    /* animation: animate-in 1s ease-out forwards;  */
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    padding: 3rem 0px;
+    /* animation: animate-in 2s ease-out forwards;  */
+    
+}
+
+.girisButton{
+    width: fit-content;
+    height: fit-content;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    background-color: #0076fa;
+    color: antiquewhite;
+    font-size: 15px;
+    font-weight: 600;
+   
+}
+
+.uyeButton{
+    width: fit-content;
+    height: fit-content;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    background-color: #feb206;
+    color: antiquewhite;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.buttons :hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgb(103, 103, 103);
+    transform: scale(1.05);
+    
+}
+
+
+
+@keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
+  @media screen and (max-width:640px) {
+    
+    .bgImage{
+        width: 100%;
+    }
+    
+}

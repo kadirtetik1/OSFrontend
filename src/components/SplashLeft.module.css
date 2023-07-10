@@ -1,0 +1,103 @@
+
+.background{
+    width: 600px;
+    height: 100vh;
+    background-color:#eeeff2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.background h1{
+    font-size: 30px;
+    color: #00649c;
+    font-weight: 700;
+    animation: animate2-in 1.5s ease-out forwards; 
+}
+
+.background h2{
+    font-size: 50px;
+}
+
+.background h3{
+    font-weight: 700;
+
+}
+
+.background p{
+    font-size: 20px;
+}
+
+.titleLine{
+    display: flex;
+    justify-content: flex-end;
+    animation: animate-in 1.5s ease-out forwards; 
+}
+
+.titleLine2{
+    width: 400px;
+    height: 5px;
+    background-color: #0076fa;
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 100px;
+    margin: -15px 0px;
+}
+
+.features{
+
+    width: fit-content;
+    display: flex;
+
+
+}
+
+.feature1{
+    width: 33%;
+    margin: 0px 1rem;
+
+}
+
+.feature2{
+    padding: 0px 0.5rem;
+    width: 33%;
+    border-right: 2px dotted rgb(185, 185, 185);
+    border-left: 2px dotted rgb(185, 185, 185);
+
+}
+
+
+@keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateX(5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes animate2-in {
+    from {
+      opacity: 0;
+      transform: translateX(-5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+
+  @media screen and (max-width:640px) {
+    
+    .background{
+        width: 100%;
+        height: 100vh;
+      
+    }
+    
+}
