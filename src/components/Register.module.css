@@ -23,16 +23,11 @@
 
 .form{
     background-color: aliceblue;
-    height: 60vh;
+    height: 70vh;
     width: 350px;
     border-radius: 20px;
 
     animation: animate-in 1s ease-out forwards; 
-}
-
-.form :hover{
-   
-    cursor: pointer;
 }
 
 
@@ -65,6 +60,190 @@
     
   
 }
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items:center;
+    inset: 4px;
+    z-index: 2;
+}
+
+.formContainer h2{
+    letter-spacing: 0.1rem;
+}
+
+.inputBox{
+    position: relative;
+    width: 300px;
+    margin-top: 25px;
+}
+
+.inputBox input{
+    position: relative;
+    width: 90%;
+    padding: 10px 5px 5px;
+    background: transparent;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+
+}
+
+.inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 10px 0px 10px;
+    color: #212121;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+
+.inputBox input:valid ~ span,
+.inputBox input:focus ~ span
+{
+    color: #0076fa;
+    font-size: 0.75em;
+    /* transform: translateY(-20px); */
+    transform: translate(5px, -20px)
+}
+
+
+
+.inputBox i{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background:#4f4f4f3a;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+   
+
+}
+
+
+.inputBox:hover{
+    cursor: pointer;
+   
+}
+
+.inputBox input:valid ~ i,
+.inputBox input:focus ~ i
+{
+    height: 44px;
+
+}
+
+.links{
+    padding-top: 5%;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.links a{
+    margin: 10px 0;
+    font-size: 0.75em;
+    color: #212121;
+    text-decoration: none;
+
+}
+
+.links a:hover{
+
+    color: #feb206;
+}
+
+.uyeButton{
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    background-color: #0076fa;
+    color: antiquewhite;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.buttonContainer{
+    padding-top: 10%;
+    height: 200%;
+    /* width: 90%; */
+    
+}
+
+.buttonContainer :hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgb(103, 103, 103);
+    transform: scale(1.05);
+    
+}
+
+
+.roleBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.selectRole{
+    position: relative;
+    height: 6rem;
+    width: 6rem;
+    margin-top: 1rem;
+
+}
+
+.selectRole input{
+    position: absolute;
+    height: 50%;
+    width: 50%;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+
+}
+
+.selectRole .inputTitle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 65%;
+    width: 65%;
+    border: 2px solid #0075fa;
+    border-radius: 15px;
+}
+
+input:checked + .inputTitle{
+    background-color: #0075fa;
+    box-shadow: 0px 0px 10px #212121;
+    transform: scale(1.1);
+}
+
+input:hover + .inputTitle{
+    box-shadow: 0px 0px 10px #212121;
+
+}
+
+input:checked + .inputTitle .icon,
+input:checked + .inputTitle label{
+    color: white !important;
+}
+
+
 
 
 @keyframes animate-in {
