@@ -1,10 +1,47 @@
-import React from 'react'
+import {React, useState} from 'react'
+import axios from 'axios';
 import styles from './Login.module.css'
 import {FiX} from "react-icons/fi";
 import {GiTeacher} from "react-icons/gi";
 import {PiStudentFill} from "react-icons/pi";
 
 const Login = (props) => {
+
+  const[academicRole, setAcademicRole] = useState("");
+  const[userName, setUserName] = useState("");
+  const[password, setPassword] = useState("");
+
+  const handleRoleChange = (value) => {
+    setAcademicRole(value);
+  }
+
+  const handleUserChange = (value) => {
+    setUserName(value);
+  }
+
+  const handlePasswordChange = (value) => {
+    setPassword(value);
+  }
+
+  const handleLogin = () => {
+    const data ={
+      academic_role: academicRole,
+      user_name: userName,
+      password: password
+    };
+
+    const url = ""   
+    axios.post(url, data).then((result) => {
+      
+      alert(result.data);
+    }).catch((error)=>{  
+      alert(error);
+    })
+
+
+  }
+  
+
     return props.isClicked ? (
         <div className={styles.background} >
     
@@ -21,7 +58,7 @@ const Login = (props) => {
 
                   <div className={styles.selectRole}>
 
-                  <input type="radio" id="teacher" name="akademik_unvan" value="teacher" required="required"/>
+                  <input type="radio" id="teacher" name="academic_role" value="teacher" onChange={(e) => handleRoleChange(e.target.value)} required="required"/>
                   <div className={styles.inputTitle}>
                     <GiTeacher className={styles.icon} size={'2rem'} color={"#feb206"}/>
                  <label style={{fontSize:"11px", fontWeight:"600"}} for="teacher">Öğretmen</label>
@@ -31,7 +68,7 @@ const Login = (props) => {
 
                   <div className={styles.selectRole}>
 
-                  <input type="radio" id="student" name="akademik_unvan" value="student" required="required"/>
+                  <input type="radio" id="student" name="academic_role" value="student" onChange={(e) => handleRoleChange(e.target.value)} required="required"/>
                   <div className={styles.inputTitle}>
                   <PiStudentFill className={styles.icon} size={'2rem'} color={"#feb206"}/>
                  <label style={{fontSize:"11px", fontWeight:"600"}} for="student">Öğrenci</label>
@@ -46,13 +83,13 @@ const Login = (props) => {
 
 
                 <div className={styles.inputBox}>
-                    <input type="text" required="required"/>
+                    <input type="text" required="required" onChange={(e) => handleUserChange(e.target.value)}/>
                     <span>Kullanıcı Adı</span>
                     <i></i>
                 </div>
 
                 <div className={styles.inputBox}>
-                    <input type="password" required="required"/>
+                    <input type="password" required="required" onChange={(e) => handlePasswordChange(e.target.value)}/>
                     <span>Şifre</span>
                     <i></i>
                 </div>
@@ -64,7 +101,7 @@ const Login = (props) => {
 
                 </div>
 
-                <div className={styles.buttonContainer}>
+                <div onClick={() => handleLogin()} className={styles.buttonContainer}>
                 <input className={styles.girisButton} type="submit" value="Giriş Yap"/>
                 </div>
                 
@@ -73,6 +110,7 @@ const Login = (props) => {
           
         </div>
       )
+
       : ""
 }
 
