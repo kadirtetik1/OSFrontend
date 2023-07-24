@@ -4,6 +4,7 @@ import styles from './Register.module.css'
 import {FiX} from "react-icons/fi";
 import {GiTeacher} from "react-icons/gi";
 import {PiStudentFill} from "react-icons/pi";
+import { createAPIEndpoint, EndPoints } from '../api';
 
 
 const Register = (props) => {
@@ -40,6 +41,8 @@ const Register = (props) => {
   }
 
   const handleRegister = () => {
+    
+
     const data ={
       first_name : name,   //Soldaki backendden gelen, sağdaki reacttan gelen adlandırmalar.
       last_name: lastName,
@@ -49,13 +52,30 @@ const Register = (props) => {
       password: password
     };
 
-    const url = ""    //backendden gelen url'i yazacağız.
-    axios.post(url, data).then((result) => {
+    switch (data.academic_role) {
+      case "student":
+       // if db'deki username girilen username eşit => alert("farklı bir kullanıcı adı giriniz!")
+        createAPIEndpoint(EndPoints.student).post(data).then(res => console.log(res)).catch(err => console.log(err));
+        break;
+      case "teacher":
+        
+        createAPIEndpoint(EndPoints.teacher).post(data).then(res => console.log(res)).catch(err => console.log(err));
+        break;
+      default:
+        break;
+    }
+    console.log(data);
+
+
+
+
+    
+    // const url = ""    //backendden gelen url'i yazacağız.
+    // axios.post(url, data).then((result) => {
       
-      alert(result.data);
-    }).catch((error)=>{    //error'u backendden çekecek ÖRN: Username başka birisinde varsa kullanıcı adını değiştirerek deneyin vs yazacak.
-      alert(error);
-    })
+   
+
+    // })
 
 
   }
@@ -131,7 +151,9 @@ const Register = (props) => {
                     <i></i>
                 </div>
 
-                <div onClick={() => handleRegister()} className={styles.buttonContainer}>
+                <div onClick={(e) => {
+                  handleRegister()
+                }} className={styles.buttonContainer}>
                 <input className={styles.uyeButton} type="submit" value="Üye Ol"/>
                 </div>
                 

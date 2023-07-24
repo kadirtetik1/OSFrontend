@@ -7,6 +7,10 @@ import {PiStudentFill} from "react-icons/pi";
 
 const Login = (props) => {
 
+  // db'deki değerleri kontrol et eşitliğe göre login olsun değilse hata mesajı döndür.
+
+  // if (userName == db userName && password == db password) => login success, if (academicRole == student) => goto studentHomePage : goto teacherHomePage
+
   const[academicRole, setAcademicRole] = useState("");
   const[userName, setUserName] = useState("");
   const[password, setPassword] = useState("");
@@ -23,6 +27,10 @@ const Login = (props) => {
     setPassword(value);
   }
 
+
+
+
+
   const handleLogin = () => {
     const data ={
       academic_role: academicRole,
@@ -32,11 +40,15 @@ const Login = (props) => {
 
     const url = ""   
     axios.post(url, data).then((result) => {
-      
-      alert(result.data);
-    }).catch((error)=>{  
-      alert(error);
+    
     })
+
+
+    console.log("academic_role:" + {academicRole} +
+      "user_name:" + {userName} +
+      "password:" + {password}
+        );
+      
 
 
   }
@@ -106,6 +118,8 @@ const Login = (props) => {
                 </div>
                 
                </form>
+
+               
             </div>
           
         </div>
