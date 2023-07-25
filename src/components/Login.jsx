@@ -1,9 +1,9 @@
 import {React, useState} from 'react'
-import axios from 'axios';
 import styles from './Login.module.css'
 import {FiX} from "react-icons/fi";
 import {GiTeacher} from "react-icons/gi";
 import {PiStudentFill} from "react-icons/pi";
+import { createAPIEndpoint, EndPoints } from '../api';
 
 const Login = (props) => {
 
@@ -30,25 +30,28 @@ const Login = (props) => {
 
 
 
+  const handleLogin = (event) => {
 
-  const handleLogin = () => {
+    // "Submit" sayfa yenilenmesini engeller.
+    event.preventDefault()
+
     const data ={
       academic_role: academicRole,
       user_name: userName,
       password: password
     };
 
-    const url = ""   
-    axios.post(url, data).then((result) => {
+
     
-    })
+
+    if(data.academic_role==="student"){
+      createAPIEndpoint(EndPoints.student_login).post({user_name : data.user_name ,password : data.password}).then(res => console.log(res)).catch(err => console.log(err));
+    }
 
 
-    console.log("academic_role:" + {academicRole} +
-      "user_name:" + {userName} +
-      "password:" + {password}
-        );
-      
+    else if(data.academic_role==="teacher"){
+      createAPIEndpoint(EndPoints.teacher_login).post({user_name : data.user_name ,password : data.password}).then(res => console.log(res)).catch(err => console.log(err));
+    }
 
 
   }
@@ -113,7 +116,7 @@ const Login = (props) => {
 
                 </div>
 
-                <div onClick={() => handleLogin()} className={styles.buttonContainer}>
+                <div onClick={(event) => handleLogin(event)} className={styles.buttonContainer}>
                 <input className={styles.girisButton} type="submit" value="Giriş Yap"/>
                 </div>
                 

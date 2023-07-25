@@ -1,5 +1,4 @@
 import {React, useState} from 'react'
-import axios from 'axios';
 import styles from './Register.module.css'
 import {FiX} from "react-icons/fi";
 import {GiTeacher} from "react-icons/gi";
@@ -40,7 +39,9 @@ const Register = (props) => {
     setPassword(value);
   }
 
-  const handleRegister = () => {
+  const handleRegister = (event) => {
+
+    event.preventDefault()
     
 
     const data ={
@@ -52,35 +53,18 @@ const Register = (props) => {
       password: password
     };
 
-    switch (data.academic_role) {
-      case "student":
-       // if db'deki username girilen username eşit => alert("farklı bir kullanıcı adı giriniz!")
-        createAPIEndpoint(EndPoints.student).post(data).then(res => console.log(res)).catch(err => console.log(err));
-        break;
-      case "teacher":
-        
-        createAPIEndpoint(EndPoints.teacher).post(data).then(res => console.log(res)).catch(err => console.log(err));
-        break;
-      default:
-        break;
-    }
-    console.log(data);
-
-
-
-
-    
-    // const url = ""    //backendden gelen url'i yazacağız.
-    // axios.post(url, data).then((result) => {
+    if(data.academic_role==="student"){
+      createAPIEndpoint(EndPoints.student).post(data).then(res => console.log(res)).catch(err => console.log(err));
       
-   
+    }
 
-    // })
-
-
+    else if(data.academic_role==="teacher"){
+      createAPIEndpoint(EndPoints.teacher).post(data).then(res => console.log(res)).catch(err => console.log(err));
+      
+    }
+    
+    
   }
-
-
 
   return props.isClicked ? (
     <div className={styles.background} >
@@ -151,8 +135,8 @@ const Register = (props) => {
                     <i></i>
                 </div>
 
-                <div onClick={(e) => {
-                  handleRegister()
+                <div onClick={(event) => {
+                  handleRegister(event)
                 }} className={styles.buttonContainer}>
                 <input className={styles.uyeButton} type="submit" value="Üye Ol"/>
                 </div>

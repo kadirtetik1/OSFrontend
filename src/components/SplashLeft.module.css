@@ -99,5 +99,9 @@
         height: 100vh;
       
     }
+
+    .background h2{
+      font-size: 35px;
+  }
     
 }
