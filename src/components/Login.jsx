@@ -1,4 +1,7 @@
 import {React, useState} from 'react'
+import StudentsHome from "../screens/students/StudentsHome"
+import TeachersHome from "../screens/teachers/TeachersHome"
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import styles from './Login.module.css'
 import {FiX} from "react-icons/fi";
 import {GiTeacher} from "react-icons/gi";
@@ -14,6 +17,8 @@ const Login = (props) => {
   const[academicRole, setAcademicRole] = useState("");
   const[userName, setUserName] = useState("");
   const[password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation ();
 
   const handleRoleChange = (value) => {
     setAcademicRole(value);
@@ -33,7 +38,8 @@ const Login = (props) => {
   const handleLogin = (event) => {
 
     // "Submit" sayfa yenilenmesini engeller.
-    event.preventDefault()
+
+     event.preventDefault();
 
     const data ={
       academic_role: academicRole,
@@ -45,12 +51,44 @@ const Login = (props) => {
     
 
     if(data.academic_role==="student"){
-      createAPIEndpoint(EndPoints.student_login).post({user_name : data.user_name ,password : data.password}).then(res => console.log(res)).catch(err => console.log(err));
+      createAPIEndpoint(EndPoints.student_login).post({user_name : data.user_name ,password : data.password}).then((res) =>{
+        console.log(res);
+        
+        if(res.data === true){
+          console.log("success");
+          
+          navigate("/studentsHome");
+          
+        }
+        else{
+          
+          alert(res.data);
+          event.preventDefault();
+          
+        }
+
+      }).catch(err => console.log(err));
+    
     }
 
 
     else if(data.academic_role==="teacher"){
-      createAPIEndpoint(EndPoints.teacher_login).post({user_name : data.user_name ,password : data.password}).then(res => console.log(res)).catch(err => console.log(err));
+      createAPIEndpoint(EndPoints.teacher_login).post({user_name : data.user_name ,password : data.password}).then((res) =>{
+        console.log(res);
+
+        if(res.data === true){
+          console.log("success");
+          
+          navigate("/teachersHome");
+          
+        }
+        else{
+          alert(res.data);
+          event.preventDefault();
+          
+        }
+
+      }).catch(err => console.log(err));
     }
 
 
@@ -59,6 +97,8 @@ const Login = (props) => {
 
     return props.isClicked ? (
         <div className={styles.background} >
+
+         
     
             <div className={styles.form}>
 
@@ -124,6 +164,8 @@ const Login = (props) => {
 
                
             </div>
+
+      
           
         </div>
       )

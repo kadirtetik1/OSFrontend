@@ -53,16 +53,20 @@ const Register = (props) => {
       password: password
     };
 
+    let message="";
+
     if(data.academic_role==="student"){
-      createAPIEndpoint(EndPoints.student).post(data).then(res => console.log(res)).catch(err => console.log(err));
-      
+      createAPIEndpoint(EndPoints.student).post(data).then(res => alert(res.data).console.log(res)).catch(err => console.log(err));
+
+     console.log(message);
     }
 
     else if(data.academic_role==="teacher"){
-      createAPIEndpoint(EndPoints.teacher).post(data).then(res => console.log(res)).catch(err => console.log(err));
+      createAPIEndpoint(EndPoints.teacher).post(data).then(res => alert(res.data).console.log(res)).catch(err => console.log(err));
+
       
     }
-    
+
     
   }
 
@@ -142,6 +146,8 @@ const Register = (props) => {
                 </div>
                 
                </form>
+
+               
         </div>
       
     </div>
