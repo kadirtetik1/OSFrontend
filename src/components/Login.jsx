@@ -1,7 +1,5 @@
 import {React, useState} from 'react'
-import StudentsHome from "../screens/students/StudentsHome"
-import TeachersHome from "../screens/teachers/TeachersHome"
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 import styles from './Login.module.css'
 import {FiX} from "react-icons/fi";
 import {GiTeacher} from "react-icons/gi";
@@ -18,7 +16,7 @@ const Login = (props) => {
   const[userName, setUserName] = useState("");
   const[password, setPassword] = useState("");
   const navigate = useNavigate();
-  const location = useLocation ();
+  
 
   const handleRoleChange = (value) => {
     setAcademicRole(value);

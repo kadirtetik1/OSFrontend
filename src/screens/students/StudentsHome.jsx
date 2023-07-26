@@ -1,9 +1,18 @@
 import React from 'react'
+import styles from './StudentsHome.module.css'
+import CourseCard from '../../components/CourseCard';
+import StuNavbar from './components/StuNavbar';
+import StuHero from './components/StuHero';
+
 
 const StudentsHome = () => {
   return (
     <div>
-      <h1>Student Home Page</h1>
+      
+      <StuNavbar/>
+      <StuHero/>
+      <CourseCard/>
+      
       
     </div>
   )

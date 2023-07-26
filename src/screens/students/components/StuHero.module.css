@@ -1,0 +1,16 @@
+
+body{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.heroContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 99vw;
+    height: 70vh;
+    background-color: bisque;
+}
