@@ -1,0 +1,133 @@
+
+ul {
+    margin: 0; 
+    padding: 0; 
+}
+.container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(154, 154, 154, 0.412);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    width: 300px;
+    height: 470px;
+    background-color: rgb(165, 170, 188);
+    margin: 10px;
+    border-radius: 15px;
+    animation: animate-in 1s ease-out forwards; 
+
+}
+
+.close{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(189, 189, 189);
+    color: rgb(75, 75, 75);
+    size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0.5rem;
+}
+.teacherImage{
+    background-color: aliceblue;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.closeContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.close :hover{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: red;
+    color: aliceblue;
+    
+  
+}
+
+.teacherNameImage{
+    width: 90%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+
+.teacherName{
+    margin-top: 1rem;
+    margin-right: 1rem;
+   
+}
+
+.teacherImage{
+    margin-top: 1rem;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.teacherInfos{
+    width: 90%;
+}
+.titleContent{
+    text-decoration:none;
+    display: flex;
+    margin: 1rem 0px;
+    align-items: center;
+}
+
+.title{
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+}
+
+.content{
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0px 5px;
+}
+
+
+@keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

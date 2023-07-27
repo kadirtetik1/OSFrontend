@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import styles from './StuNavbar.module.css'
 import {motion} from "framer-motion";
 import { BiUser, BiSearchAlt } from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
+import UserInfos from '../../../components/UserInfos';
+
 
 
 const StuNavbar = () => {
+
+    const [userInfos, setUserInfos] = useState(false);
+
+    function toggleUserInfos (){
+        setUserInfos(!userInfos);
+       
+     }
+
   return (
+    <div>
+
+    
     <div className={styles.container}>
 
         <Link style={{ textDecoration: 'none' }} className={styles.logo} to="/studentsHome"><h1>Logo</h1></Link>
@@ -49,7 +62,7 @@ const StuNavbar = () => {
             <li>
                 <Link style={{ textDecoration: 'none' }} to="/studentsHome">
                 <motion.div className={styles.navItem} whileHover={{scale:1.1}}>
-                    <div className={styles.userIcon}>
+                    <div onClick={toggleUserInfos} className={styles.userIcon}>
                     <BiUser style={{color:"black"}} size={25}/>
                     </div>
                 
@@ -58,8 +71,9 @@ const StuNavbar = () => {
             </li>
 
 
-
         </ul>
+        </div>
+        <UserInfos isClicked={userInfos} closeInfo={setUserInfos}/>
     </div>
   )
 }
