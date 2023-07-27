@@ -33,15 +33,7 @@ const StuNavbar = () => {
             <li>
                 <Link style={{ textDecoration: 'none' }} to="/studentsHome">
                 <motion.div className={styles.navItem} whileHover={{scale:1.1}}>
-                    Fakülteler
-                </motion.div>
-                </Link>
-            </li>
-
-            <li>
-                <Link style={{ textDecoration: 'none' }} to="/studentsHome">
-                <motion.div className={styles.navItem} whileHover={{scale:1.1}}>
-                    Açılacak Dersler
+                    Ders Programı
                 </motion.div>
                 </Link>
             </li>
