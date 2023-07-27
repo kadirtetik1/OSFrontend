@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import styles from './StuNavbar.module.css'
 import {motion} from "framer-motion";
-import { BiUser, BiSearchAlt } from "react-icons/bi";
+import { BiUser} from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
 import UserInfos from '../../../components/UserInfos';
 
