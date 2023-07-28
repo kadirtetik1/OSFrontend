@@ -1,0 +1,28 @@
+
+
+.userContents{
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.formLabel{
+    margin-right: 0.5rem;
+    font-size: 20px;
+    font-weight: 500;
+    width: 45%;
+    padding-bottom: 0.5rem;
+    /* border-bottom: 1px solid black; */
+
+}
+
+.formInput{
+    background-color: rgb(38, 113, 212);
+    border: none;
+    border-radius: 10px;
+    color: aliceblue;
+    font-size: 15px;
+    padding-left: 0.5rem;
+    
+}

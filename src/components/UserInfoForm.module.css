@@ -1,0 +1,102 @@
+
+
+.container1{
+    width: 100%;
+    height: 89%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.infosContainer{
+    width: 250px;
+    height: 600px;
+    margin: 0px 1rem;
+
+}
+
+.formContainer{
+    margin-left: 3rem;
+    width: 500px;
+    height: 600px;
+    border: 1px solid rgba(121, 121, 121, 0.517);
+    border-radius: 10px;  
+}
+
+.image{
+    width: 100%;
+    height: 41.666666%;
+    border-radius: 50%;
+    background-color: rgb(79, 79, 79);
+}
+
+.infos{
+    width: 100%;
+    height: 55%;
+    margin-top: 1rem;
+
+}
+
+.realName{
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.userName{
+    font-size: 20px;
+    color: rgb(127, 127, 127);
+    font-weight: 300;
+    
+}
+
+.academicRole{
+    font-size: 20px;
+    margin-top: 1rem;
+    
+
+}
+
+.edit{
+    display: flex;
+    justify-content:flex-end;
+    margin: 1rem;
+    color: black;
+}
+
+.edit:hover{
+    cursor: pointer;
+    color: rgb(1, 182, 58);
+}
+
+.kaydetButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    background-color: rgb(1, 182, 58);
+    padding: 0.5rem;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+    font-size: 15px;
+    font-size: 500;
+    margin-top: 1rem;
+   
+}
+
+.kaydet{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kaydetButton:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 5px black;
+}

@@ -9,6 +9,7 @@ import UserInfoAreas from './UserInfoAreas';
 
 
 const userInfos = (props) => {
+  
   return props.isClicked ? (
     <div className={style.background}>
 

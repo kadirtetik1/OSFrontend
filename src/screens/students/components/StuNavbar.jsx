@@ -36,7 +36,7 @@ const StuNavbar = () => {
         <ul className={styles.navItemsRight}>
 
             <li>
-                <Link style={{ textDecoration: 'none' }} to="/studentsHome">
+                <Link style={{ textDecoration: 'none' }} to="/studentsHome">  {/* teacher =>   to="/teachersHome" ÇÖZ!  */}
                 <motion.div className={styles.navItem} whileHover={{scale:1.1}}>
                     Anasayfa
                 </motion.div>
@@ -44,7 +44,7 @@ const StuNavbar = () => {
             </li>
 
             <li>
-                <Link style={{ textDecoration: 'none' }} to="/studentsHome">
+                <Link style={{ textDecoration: 'none' }} >  {/* to="/dersprogramı" */}
                 <motion.div className={styles.navItem} whileHover={{scale:1.1}}>
                     Ders Programı
                 </motion.div>
@@ -52,7 +52,7 @@ const StuNavbar = () => {
             </li>
 
             <li>
-                <Link style={{ textDecoration: 'none' }} to="/studentsHome">
+                <Link style={{ textDecoration: 'none' }} >  {/* to="/dersislemleri" */}
                 <motion.div className={styles.navItem} whileHover={{scale:1.1}}>
                     Ders İşlemleri
                 </motion.div>
@@ -60,7 +60,7 @@ const StuNavbar = () => {
             </li>
 
             <li>
-                <Link style={{ textDecoration: 'none' }} to="/studentsHome">
+                <Link style={{ textDecoration: 'none' }}>
                 <motion.div className={styles.navItem} whileHover={{scale:1.1}}>
                     <div onClick={toggleUserInfos} className={styles.userIcon}>
                     <BiUser style={{color:"black"}} size={25}/>

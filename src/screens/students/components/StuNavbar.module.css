@@ -3,7 +3,7 @@ body{
     padding: 0 !important;
 }
 .container{
-    background-color: #0050b8;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 52%, rgba(0,160,255,1) 100%);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -83,6 +83,7 @@ body{
 
 }
 
-.searchIcon :hover{
+.searchIcon:hover{
     cursor: pointer;
+    
 }
