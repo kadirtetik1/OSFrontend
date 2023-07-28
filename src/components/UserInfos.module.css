@@ -21,6 +21,7 @@
     background-color: rgb(255, 255, 255);
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
+    animation: animate-in 0.5s ease-out forwards; 
 }
 
 .closeContainer{
@@ -91,3 +92,16 @@
     color: rgb(114, 114, 114);
 
 }
+
+@keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  

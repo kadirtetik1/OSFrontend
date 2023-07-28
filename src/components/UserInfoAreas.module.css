@@ -1,0 +1,33 @@
+
+
+.container{
+   width: 80%;
+   height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    /* border-bottom: 1px solid rgb(197, 197, 197); */
+    
+}
+
+.icon{
+    margin-right: 0.5rem;
+}
+
+.content{
+    font-size: 14px;
+    color: rgb(59, 59, 59);
+}
+
+.container:hover{
+    cursor: pointer;
+    background-color: rgba(226, 226, 226, 0.709);
+}
+
+.bottomLine{
+    width: 90%;
+    margin: 0.5rem;
+    border-bottom: 1px solid rgb(202, 202, 202);
+}
