@@ -1,24 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FormAreas from './FormAreas';
 import styles from './UserInfoForm.module.css'
 import { LiaEdit} from "react-icons/lia";
-import {ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import FormAreasDefault from './FormAreasDefault';
+import KaydetButton from './KaydetButton';
 
 const UserInfoForm = (props) => {
 
-    const kaydetButtonStyle = `styles.kaydetButton`
-    const kaydet = 'Değişiklikleri Kaydet'
+  const [edit, setEdit] = useState(false);
+  const [def, setDef] = useState(true);
 
-    const kaydetSuccess = () => {
-        toast.success("Bilgileriniz Başarıyla Güncellendi!", {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
+  function toggleEdit (event){
+    setEdit(!edit);
+    console.log(edit);
+   
 
-    const showEdit = () =>{
-    }
+    setDef(!def);
+    console.log(def);
 
+ }
+
+ let editColor ="";
+
+ edit? editColor="#01b671" : editColor="black";
+
+
+  const name= "Kadir";
+  const last_name = "Tetik";
+  const academic_role = "tetik.kadir@hotmail.com";
+  const gender = "Erkek";
+  const e_mail = "tetik.kadir@hotmail.com";
+  const phone_number = "0553 555 55 55";
+  const user_name = "kadir.tetik";
+  const password = "*******";
 
 
   return (
@@ -35,26 +49,39 @@ const UserInfoForm = (props) => {
                 <div className={styles.academicRole}>{props.academicRole}</div>
             </div>
         </div>
-      <div className={styles.formContainer}>
+      <form className={styles.formContainer}>
 
-        <div className={styles.edit} onClick={(event) => showEdit(event)}><LiaEdit size={25}/></div>
+        <div className={styles.edit} isClicked={edit}  onClick={() => {toggleEdit(); }}> <LiaEdit size={25} color={editColor}/></div>
 
-        <FormAreas label="Ad:" input="Kadir"/>
-        <FormAreas label="Soyad:" input="Tetik"/>
-        <FormAreas label="Akademik Ünvan:" input="Öğrenci"/>
-        <FormAreas label="Cinsiyet:" input="Erkek"/>
-        <FormAreas label="E-mail Adres:" input="tetik.kadir@student.edu.tr"/>
-        <FormAreas label="Telefon Numarası:" input="0553 555 55 55"/>
-        <FormAreas label="Kullanıcı Adı:" input="kadir.tetik"/>
-        <FormAreas label="Şifre:" input="*********"/>
+     
 
-        <div className={styles.kaydet}>
-        <div className={styles.kaydetButton} onClick={() => kaydetSuccess()}>{kaydet}</div>
-        </div>
+
+        <FormAreas isClicked={edit} label="Ad:" input={name}/>
+        <FormAreas isClicked={edit} label="Soyad:" input={last_name}/>
+        <FormAreas isClicked={edit} label="Akademik Ünvan:" input={academic_role}/>
+        <FormAreas isClicked={edit} label="Cinsiyet:" input={gender}/>
+        <FormAreas isClicked={edit} label="E-mail Adres:" input={e_mail}/>
+        <FormAreas isClicked={edit} label="Telefon Numarası:" input={phone_number}/>
+        <FormAreas isClicked={edit} label="Kullanıcı Adı:" input={user_name}/>
+        <FormAreas isClicked={edit} label="Şifre:" input={password}/>
+
+       
+
+        <FormAreasDefault isClicked={def} label="Ad:" input={name}/>
+        <FormAreasDefault isClicked={def} label="Soyad:" input={last_name}/>
+        <FormAreasDefault isClicked={def} label="Akademik Ünvan:" input={academic_role}/>
+        <FormAreasDefault isClicked={def} label="Cinsiyet:" input={gender}/>
+        <FormAreasDefault isClicked={def} label="E-mail Adres:" input={e_mail}/>
+        <FormAreasDefault isClicked={def} label="Telefon Numarası:" input={phone_number}/>
+        <FormAreasDefault isClicked={def} label="Kullanıcı Adı:" input={user_name}/>
+        <FormAreasDefault isClicked={def} label="Şifre:" input={password}/>
+
         
-      </div>
+        <KaydetButton isClicked={edit} onClick={(event) => {toggleEdit(event); }}/> 
+        
+      </form>
     </div>
-    <ToastContainer />
+    
     </div>
   )
 }
