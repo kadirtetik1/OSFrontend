@@ -44,8 +44,6 @@ const Login = (props) => {
       user_name: userName,
       password: password
     };
-
-
     
 
     if(data.academic_role==="student"){
@@ -88,12 +86,10 @@ const Login = (props) => {
 
       }).catch(err => console.log(err));
     }
-
-
   }
   
 
-    return props.isClicked ? (
+    return props.isclicked ? (
         <div className={styles.background} >
 
          

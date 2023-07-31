@@ -10,7 +10,7 @@ import UserInfoAreas from './UserInfoAreas';
 
 const userInfos = (props) => {
   
-  return props.isClicked ? (
+  return props.isclicked ? (
     <div className={style.background}>
 
         <div className={style.container} >

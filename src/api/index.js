@@ -18,8 +18,8 @@ export const createAPIEndpoint = endpoint => {
     return {
         get : () => axios.get(url),
         getById: id => axios.get(url + id),
-        post: newUser => axios.post(url, newUser),   // record örnek uygulamayla ilgili olabilir kendine göre uyarla, user,student vs
-        put: (id, updateRecord) => axios.put(url + id, updateRecord ),
+        post: newUser => axios.post(url, newUser),  
+        put: (id, updateUser) => axios.put(url + id, updateUser ),
         delete: id=> axios.delete(url + id),
         
     }

@@ -32,8 +32,8 @@ const SplashRight = () => {
 
         </div>
 
-        <Register isClicked={register} closeRegister={setRegister} />
-        <Login isClicked={login} closeLogin={setLogin} />
+        <Register isclicked={register} closeRegister={setRegister} />
+        <Login isclicked={login} closeLogin={setLogin} />
        
         
       

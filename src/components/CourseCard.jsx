@@ -49,7 +49,7 @@ const CourseCard = (props) => {
         
 </div>
 
-<TeacherInfo isClicked={teacherInfo} closeInfo={setTeacherInfo} teacherImage={props.teacherImage} name={props.name} unvan={props.unvan} />
+<TeacherInfo isclicked={teacherInfo} closeInfo={setTeacherInfo} teacherImage={props.teacherImage} name={props.name} unvan={props.unvan} />
 
     </div>
   )

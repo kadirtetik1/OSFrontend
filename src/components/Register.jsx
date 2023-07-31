@@ -67,7 +67,7 @@ const Register = (props) => {
     
   }
 
-  return props.isClicked ? (
+  return props.isclicked ? (
     <div className={styles.background} >
 
         <div className={styles.form}>

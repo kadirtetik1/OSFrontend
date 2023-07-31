@@ -5,7 +5,7 @@ import {FiX} from "react-icons/fi";
 
 
 const TeacherInfo = (props) => {
-  return props.isClicked ? (
+  return props.isclicked ? (
     <div className={styles.container}>
     
 

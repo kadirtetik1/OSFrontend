@@ -11,13 +11,13 @@ const KaydetButton = (props) => {
         });
     };
 
-  return props.isClicked ? (
+  return props.isclicked ? (
     <div className={styles.kaydet} onClick={() => kaydetSuccess()}>
         <input type="submit" className={styles.kaydetButton} value="Değişiklikleri Kaydet"/>
         <ToastContainer />
         </div>
   )
-  :""
+  :undefined
 }
 
 export default KaydetButton
