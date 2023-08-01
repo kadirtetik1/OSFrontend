@@ -35,8 +35,6 @@ const Login = (props) => {
 
   const handleLogin = (event) => {
 
-    // "Submit" sayfa yenilenmesini engeller.
-
      event.preventDefault();
 
     const data ={
@@ -110,7 +108,7 @@ const Login = (props) => {
                   <input type="radio" id="teacher" name="academic_role" value="teacher" onChange={(e) => handleRoleChange(e.target.value)} required="required"/>
                   <div className={styles.inputTitle}>
                     <GiTeacher className={styles.icon} size={'2rem'} color={"#feb206"}/>
-                 <label style={{fontSize:"11px", fontWeight:"600"}} for="teacher">Öğretmen</label>
+                 <label style={{fontSize:"11px", fontWeight:"600"}}>Öğretmen</label>
                  </div>
 
                   </div>
@@ -120,7 +118,7 @@ const Login = (props) => {
                   <input type="radio" id="student" name="academic_role" value="student" onChange={(e) => handleRoleChange(e.target.value)} required="required"/>
                   <div className={styles.inputTitle}>
                   <PiStudentFill className={styles.icon} size={'2rem'} color={"#feb206"}/>
-                 <label style={{fontSize:"11px", fontWeight:"600"}} for="student">Öğrenci</label>
+                 <label style={{fontSize:"11px", fontWeight:"600"}} >Öğrenci</label>
                   </div>
                  
                 </div>
