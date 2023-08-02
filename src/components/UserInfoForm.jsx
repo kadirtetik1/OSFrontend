@@ -14,7 +14,8 @@ const UserInfoForm = (props) => {
   
 
 const [res, setRes] = useState(null);
-const userId="eb04476e-7595-4ed0-a804-855606ea61e2";
+
+const userId="eb04476e-7595-4ed0-a804-855606ea61e2";   //db'den var olan bir userId verildi. Dah sonra burayı giriş yapılan tokendan çekeceksin.
 
 const [edit, setEdit] = useState(false);
 const [success, setSuccess] = useState(false);
@@ -94,16 +95,17 @@ function updateInfos(){
   var password1 = "*******";
 
 
-  fname!=""? name1=fname : name1=name;
+  fname!=""? name1=fname : name1=name;    // Eğer onchangede değişiklik yoksa db'ye eski halini göndermesi için yazıldı.
   lname!=""? last_name1=lname : last_name1=last_name;
-  academicRole!=""? academic_role1=academicRole : academic_role1=academic_role;
+  // academicRole!=""? academic_role1=academicRole : academic_role1=academic_role;
   mail!=""? e_mail1=mail : e_mail1=e_mail;
   pass!=""? password1=pass : password1=password;
   usern!=""? user_name1=usern : user_name1=user_name;
   department1!=""? department2=department1 : department2=department;
   gender1!=""? gender2=gender1 : gender2=gender;
-  phone!=""? phone_number1=phone : phone_number1=phone_number;   //Sadece telefon değişmiyor DÜZELT!!
+  phone!=""? phone_number1=phone : phone_number1=phone_number;   // Telefon, cinsiyet, fakülte update tablosunda olmadığı için şu an değiştirmiyor.
   
+  academic_role=="student" ? academic_role1="Öğrenci" : academic_role1="Öğretmen";  // Değiştirmiyor kontrol et!
 
   const data ={
     id: userId,
@@ -113,13 +115,18 @@ function updateInfos(){
     e_mail: e_mail1,
     user_name: user_name1,
     password: password1,
-    department: department2,
-    gender: gender2,
     phone_numbe: phone_number1,
    
   };
 
+  // department: department2,
+  //   gender: gender2,
+
+  
+
   createAPIEndpoint(EndPoints.student).put(data).then(res => console.log(res.data)).catch(err => console.log(err));
+
+  // Registerdaki gibi sisteme kayıtlı aynı kullanıcı adı veya e posta varsa değiştirmesine izin verme!
 
 }
 
@@ -143,17 +150,16 @@ edit ? editColor="#01b671" : editColor="black";
 
   console.log(res?.data);
 
-  var name= res?.data.first_name;
-  var last_name = res?.data.last_name;
-  var academic_role = res?.data.academic_role;
-  var department = res?.data.department;
-  var gender = res?.data.gender;
-  var e_mail = res?.data.e_mail;
-  var phone_number = res?.data.phone_number;
-  var user_name = res?.data.user_name;
-  var password = "*******";
+  let name= res?.data.first_name;
+  let last_name = res?.data.last_name;
+  let academic_role = res?.data.academic_role;
+  let department = res?.data.department;
+  let gender = res?.data.gender;
+  let e_mail = res?.data.e_mail;
+  let phone_number = res?.data.phone_number;
+  let user_name = res?.data.user_name;
+  let password = "*******";
 
-  academic_role=="student" ? academic_role="Öğrenci" : academic_role="Öğretmen" // DEĞER GELMEZSE ÖĞRETMEN BASIYO DÜZELT!
   
   console.log(res?.data);
   return (
@@ -179,7 +185,7 @@ edit ? editColor="#01b671" : editColor="black";
 
         <FormAreasDefault label="Ad:" input={name} readOnly={show} onChange={ (e) => {handleNameChange(e.target.value) }}/>
         <FormAreasDefault label="Soyad:" input={last_name} readOnly={show} onChange={(e) => handleLastNChange(e.target.value)}/>
-        <FormAreasDefault label="Akademik Ünvan:" input={academic_role} readOnly={show} onChange={(e) => handleRoleChange(e.target.value)}/>
+        <FormAreasDefault label="Akademik Ünvan:" input={academic_role} readOnly={true}/>
         <FormAreasDefault label="Fakülte:" input={department} readOnly={show} onChange={(e) => handleDepartmentChange(e.target.value)}/>
         <FormAreasDefault label="Cinsiyet:" input={gender} readOnly={show} onChange={(e) => handleGenderChange(e.target.value)}/>
         <FormAreasDefault label="E-mail Adres:" input={e_mail} readOnly={show} onChange={(e) => handleMailChange(e.target.value)}/>
@@ -187,27 +193,8 @@ edit ? editColor="#01b671" : editColor="black";
         <FormAreasDefault label="Kullanıcı Adı:" input={user_name} readOnly={show} onChange={(e) => handleUserNameChange(e.target.value)}/>
         <FormAreasDefault label="Şifre:" input={password} readOnly={show} onChange={(e) => handlePasswordChange(e.target.value)}/>
         
-        <div>{fname}</div>
-
-        {/* <FormAreas isclicked={edit} label="Ad:" input={name} onChange={(e) => handleNameChange(e)}/>
-        <FormAreas isclicked={edit} label="Soyad:" input={last_name}/>
-        <FormAreas isclicked={edit} label="Akademik Ünvan:" input={academic_role}/>
-        <FormAreas isclicked={edit} label="Cinsiyet:" input={gender}/>
-        <FormAreas isclicked={edit} label="E-mail Adres:" input={e_mail}/>
-        <FormAreas isclicked={edit} label="Telefon Numarası:" input={phone_number}/>
-        <FormAreas isclicked={edit} label="Kullanıcı Adı:" input={user_name}/>
-        <FormAreas isclicked={edit} label="Şifre:" input={password}/> */}
-
-
-        {/* <div className={styles.kaydet} onClick={() => { updateInfos();}}>
-        <input type="submit" className={styles.kaydetButton} value="Değişiklikleri Kaydet"/>
-       
-        </div> */}
-
-
-        
-        <KaydetButton isclicked={edit} onClick={() => {toggleEdit(); succcessMessage(); updateInfos();
-                 }}/> 
+   
+        <KaydetButton isclicked={edit} onClick={() => {toggleEdit(); succcessMessage(); updateInfos(); }}/> 
         
       </form>
     </div>
