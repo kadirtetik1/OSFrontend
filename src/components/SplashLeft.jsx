@@ -4,6 +4,8 @@ import styles from './SplashLeft.module.css'
 import {BiTimer} from 'react-icons/bi';
 import {IoPeopleSharp} from 'react-icons/io5';
 
+
+
 const SplashLeft = () => {
   return (
     <div className={styles.background}>
@@ -41,6 +43,7 @@ const SplashLeft = () => {
         </div>
 
         </div>
+
       
     </div>
   )

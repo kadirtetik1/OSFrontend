@@ -3,3 +3,18 @@ body{
     margin: 0 !important;
     padding: 0 !important;
 }
+
+.swiperContainer{
+
+   width: 1200px;
+   
+}
+
+.swiperContainerOuter{
+    margin: 20px;
+    width: 97%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
