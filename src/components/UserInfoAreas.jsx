@@ -38,6 +38,9 @@ const UserInfoAreas = (props) => {
       alert("Çıkış yapmak istediğinize emin misiniz? ");  // Soru cevap şeklinde sor, if(answer=="yes") => çıkış..
      
       navigate("/");
+      
+      localStorage.removeItem("Token");
+      
     }
   }
   return (

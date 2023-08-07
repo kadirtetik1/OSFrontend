@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useEffect, useState} from 'react'
 import {useNavigate } from 'react-router-dom'
 import styles from './Login.module.css'
 import {FiX} from "react-icons/fi";
@@ -48,17 +48,18 @@ const Login = (props) => {
       createAPIEndpoint(EndPoints.student_login).post({user_name : data.user_name ,password : data.password}).then((res) =>{
         console.log(res);
         
-        if(res.data === true){
-          console.log("success");
-          
-          navigate("/studentsHome");
-          
-        }
-        else{
-          
+        if(res.data == "Kullanıcı adı veya şifre hatalı!"){
+
           alert(res.data);
           event.preventDefault();
           
+        }
+        else{
+          console.log(res.data);
+          navigate("/studentsHome");
+          localStorage.setItem("Token", res.data.accessToken);
+          // localStorage.removeItem("Token");    // logout methodunda çalıştır.
+             
         }
 
       }).catch(err => console.log(err));
@@ -70,15 +71,16 @@ const Login = (props) => {
       createAPIEndpoint(EndPoints.teacher_login).post({user_name : data.user_name ,password : data.password}).then((res) =>{
         console.log(res);
 
-        if(res.data === true){
-          console.log("success");
-          
-          navigate("/teachersHome");
+        if(res.data == "Kullanıcı adı veya şifre hatalı!"){
+
+          alert(res.data);
+          event.preventDefault();
           
         }
         else{
-          alert(res.data);
-          event.preventDefault();
+          console.log(res.data);
+          navigate("/teachersHome");
+          localStorage.setItem("Token", res.data.accessToken);
           
         }
 
