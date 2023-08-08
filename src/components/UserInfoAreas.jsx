@@ -40,6 +40,9 @@ const UserInfoAreas = (props) => {
       navigate("/");
       
       localStorage.removeItem("Token");
+      localStorage.removeItem("Id");
+      localStorage.removeItem("username");
+      localStorage.removeItem("name");
       
     }
   }
@@ -47,7 +50,7 @@ const UserInfoAreas = (props) => {
     <div className={styles.container1}>
 
     <div onClick={(event) => handleLogin(event)} className={styles.container}>
-        <div className={styles.icon}>{props.icon}</div>   {/* <BiUser style={{color:"black"}} size={20}/>   Çağırdığın bölümde dahil et. */}
+        <div className={styles.icon}>{props.icon}</div>
         <div className={styles.content}>{props.title}</div>
 
         </div>

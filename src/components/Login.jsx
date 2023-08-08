@@ -5,6 +5,7 @@ import {FiX} from "react-icons/fi";
 import {GiTeacher} from "react-icons/gi";
 import {PiStudentFill} from "react-icons/pi";
 import { createAPIEndpoint, EndPoints } from '../api';
+import jwt from 'jwt-decode'
 
 const Login = (props) => {
 
@@ -58,8 +59,8 @@ const Login = (props) => {
           console.log(res.data);
           navigate("/studentsHome");
           localStorage.setItem("Token", res.data.accessToken);
-          // localStorage.removeItem("Token");    // logout methodunda çalıştır.
-             
+          const decode = jwt(res.data.accessToken);
+          localStorage.setItem("Id", decode.id); 
         }
 
       }).catch(err => console.log(err));
@@ -81,6 +82,8 @@ const Login = (props) => {
           console.log(res.data);
           navigate("/teachersHome");
           localStorage.setItem("Token", res.data.accessToken);
+          const decode = jwt(res.data.accessToken);
+          localStorage.setItem("Id", decode.id); 
           
         }
 
@@ -155,11 +158,8 @@ const Login = (props) => {
                 </div>
                 
                </form>
-
                
             </div>
-
-      
           
         </div>
       )

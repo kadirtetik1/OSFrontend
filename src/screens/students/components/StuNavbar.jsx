@@ -73,7 +73,7 @@ const StuNavbar = () => {
 
         </ul>
         </div>
-        <UserInfos isclicked={userInfos} closeInfo={setUserInfos}  image={<BiUser style={{color:"black"}} size={25}/>} userName="kadir.tetik" realName="Kadir Tetik"/>
+        <UserInfos isclicked={userInfos} closeInfo={setUserInfos}/>
     </div>
   )
 }

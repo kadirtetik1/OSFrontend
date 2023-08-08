@@ -9,6 +9,12 @@ import UserInfoAreas from './UserInfoAreas';
 
 
 const userInfos = (props) => {
+
+  const name = localStorage.getItem("name");
+  const username = localStorage.getItem("username");
+
+
+  // image={<BiUser style={{color:"black"}} size={25}/>} userName="kadir.tetik" realName="Kadir Tetik"
   
   return props.isclicked ? (
     <div className={style.background}>
@@ -18,10 +24,10 @@ const userInfos = (props) => {
         <div className={style.closeContainer}>
 
             <div className={style.userNameImage}>
-                <div className={style.userImage}>{props.image}</div> 
+                <div className={style.userImage}><BiUser style={{color:"black"}} size={25}/></div> {/* Daha sonra profil fotosunu ekle ve db'den çek! */}
                 <div className={style.names}>
-                    <div className={style.userName}>{props.userName}</div>
-                    <div className={style.realName}>{props.realName}</div>
+                    <div className={style.userName}>{username}</div>
+                    <div className={style.realName}>{name}</div>
                 </div>
             </div>
             <div className={style.close}  onClick={() => props.closeInfo(false)}><FiX size={'2rem'}/></div>
