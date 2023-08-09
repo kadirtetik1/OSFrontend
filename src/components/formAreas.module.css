@@ -24,6 +24,7 @@
     color: aliceblue;
     font-size: 15px;
     padding-left: 0.5rem;
+   
     
 }
 
@@ -32,7 +33,7 @@
 .userContents1{
     display: flex;
     justify-content: center;
-    margin: 1rem 0px 1rem 1.75rem;
+    margin: 1rem 0px 1rem 1.60rem;
     padding-bottom: 0.5rem;
 }
 
@@ -60,8 +61,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20px;
-    height: 20px;
+   
     border-radius: 10px;
     /* margin-bottom: 10px; */
     margin-left: 0.5rem;
@@ -70,4 +70,15 @@
 
 .passwordButton:hover{
     cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
 }

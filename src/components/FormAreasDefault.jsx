@@ -9,7 +9,7 @@ const FormAreasDefault = (props) => {
 
       <div className={styles.userContents}>
         <label htmlFor="formInput" className={styles.formLabel}>{props.label}</label>
-        <input type={props.type} id="formInput" defaultValue={props.input}  className={styles.formInput} onChange={props.onChange} readOnly ={props.readOnly}/>
+        <input type={props.type} id="formInput" defaultValue={props.input} required="required" className={styles.formInput} onChange={props.onChange} readOnly ={props.readOnly}/>
         </div>
 
     </div>

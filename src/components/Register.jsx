@@ -4,6 +4,8 @@ import {FiX} from "react-icons/fi";
 import {GiTeacher} from "react-icons/gi";
 import {PiStudentFill} from "react-icons/pi";
 import { createAPIEndpoint, EndPoints } from '../api';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Register = (props) => {
@@ -55,12 +57,30 @@ const Register = (props) => {
 
 
     if(data.academic_role==="student"){
-      createAPIEndpoint(EndPoints.student).post(data).then(res => alert(res.data).console.log(res)).catch(err => console.log(err));
+      createAPIEndpoint(EndPoints.student).post(data).then(res => {
+
+        const showToastMessage = () => {
+          toast.info(res.data, {
+              position: toast.POSITION.TOP_RİGHT
+          });
+      };
+      showToastMessage();
+      console.log(res)}
+      ).catch(err => console.log(err));
 
     }
 
     else if(data.academic_role==="teacher"){
-      createAPIEndpoint(EndPoints.teacher).post(data).then(res => alert(res.data).console.log(res)).catch(err => console.log(err));
+      createAPIEndpoint(EndPoints.teacher).post(data).then(res => {
+
+        const showToastMessage = () => {
+          toast.info(res.data, {
+              position: toast.POSITION.TOP_RİGHT
+          });
+      };
+      showToastMessage();
+      console.log(res)}
+      ).catch(err => console.log(err));
 
     }
 
@@ -146,7 +166,7 @@ const Register = (props) => {
 
                
         </div>
-      
+        <ToastContainer />
     </div>
   )
 

@@ -48,13 +48,11 @@ const kaydetSuccess = () => {
 
     if(value!=""){  //1 değişken daha oluştur eğer "" değilse db'ye gönder?
       setFname(value);
-      console.log(value);
-      console.log("--------------1");
+      
     }
     else{
-      setFname("value2");
-      console.log(value);
-      console.log("--------------2");
+      setFname("");
+      
     }
 
 }
@@ -81,15 +79,15 @@ const kaydetSuccess = () => {
 
 function updateInfos(){
 
-  let name1= "";
-  let last_name1 = "";
-  let academic_role1 = "";
-  let department2 = "";
-  let gender2 = "";
-  let e_mail1 = "";
-  let phone_number1 = "";
-  let user_name1 = "";
-  let password1 = "*******";
+  let name1= " ";
+  let last_name1 = " ";
+  let academic_role1 = " ";
+  let department2 = " ";
+  let gender2 = " ";
+  let e_mail1 = " ";
+  let phone_number1 = " ";
+  let user_name1 = " ";
+  let password1 = " ";
 
 
   fname!=""? name1=fname : name1=name;    // Eğer onchangede değişiklik yoksa db'ye eski halini göndermesi için yazıldı.
@@ -112,12 +110,11 @@ function updateInfos(){
     e_mail: e_mail1,
     user_name: user_name1,
     password: password1,
-    phone_numbe: phone_number1,
-   
-  };
+    phone_number: phone_number1,
+    gender:gender2,
+    department:department2
 
-  // department: department2,
-  // gender: gender2,
+  };
 
   
 
@@ -190,8 +187,8 @@ edit ? editColor="#01b671" : editColor="black";
         <FormAreasDefault type="text" label="Akademik Ünvan:" input={academic_role} readOnly={true}/>
         <FormAreasDefault type="text" label="Fakülte:" input={department} readOnly={show} onChange={(e) => handleDepartmentChange(e.target.value)}/>
         <FormAreasDefault type="text" label="Cinsiyet:" input={gender} readOnly={show} onChange={(e) => handleGenderChange(e.target.value)}/>
-        <FormAreasDefault type="text" label="E-mail Adres:" input={e_mail} readOnly={show} onChange={(e) => handleMailChange(e.target.value)}/>
-        <FormAreasDefault type="text" label="Telefon Numarası:" input={phone_number} readOnly={show} onChange={(e) => handlePhoneChange(e.target.value)}/>
+        <FormAreasDefault type="mail" label="E-mail Adres:" input={e_mail} readOnly={show} onChange={(e) => handleMailChange(e.target.value)}/>
+        <FormAreasDefault type="number" label="Telefon Numarası:" input={phone_number} readOnly={show} onChange={(e) => handlePhoneChange(e.target.value)}/>
         <FormAreasDefault type="text" label="Kullanıcı Adı:" input={user_name} readOnly={show} onChange={(e) => handleUserNameChange(e.target.value)}/>
 
         {/* <FormAreasDefault type="password" label="Şifre:" input={password} readOnly={show} onChange={(e) => handlePasswordChange(e.target.value)}/> */}
