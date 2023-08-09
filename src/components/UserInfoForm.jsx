@@ -7,6 +7,7 @@ import KaydetButton from './KaydetButton';
 import { createAPIEndpoint, EndPoints } from '../api';
 import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FormAreaOptions from './FormAreaOptions';
 
 
 const UserInfoForm = (props) => {
@@ -185,17 +186,23 @@ edit ? editColor="#01b671" : editColor="black";
         <FormAreasDefault type="text" label="Ad:" input={name} readOnly={show} onChange={ (e) => {handleNameChange(e.target.value) }}/>
         <FormAreasDefault type="text" label="Soyad:" input={last_name} readOnly={show} onChange={(e) => handleLastNChange(e.target.value)}/>
         <FormAreasDefault type="text" label="Akademik Ünvan:" input={academic_role} readOnly={true}/>
-        <FormAreasDefault type="text" label="Fakülte:" input={department} readOnly={show} onChange={(e) => handleDepartmentChange(e.target.value)}/>
+        {/* <FormAreasDefault type="text" label="Fakülte:" input={department} readOnly={show} onChange={(e) => handleDepartmentChange(e.target.value)}/> */}
+
+
+        <FormAreaOptions type="text" label="Fakülte Deneme:" selected={department1} disabled={show} onChange={(e) => {
+          const selectedDepartment = e.target.value;
+          setDepartment(selectedDepartment); console.log(department1);
+        }} />
+
+        
         <FormAreasDefault type="text" label="Cinsiyet:" input={gender} readOnly={show} onChange={(e) => handleGenderChange(e.target.value)}/>
         <FormAreasDefault type="mail" label="E-mail Adres:" input={e_mail} readOnly={show} onChange={(e) => handleMailChange(e.target.value)}/>
         <FormAreasDefault type="number" label="Telefon Numarası:" input={phone_number} readOnly={show} onChange={(e) => handlePhoneChange(e.target.value)}/>
         <FormAreasDefault type="text" label="Kullanıcı Adı:" input={user_name} readOnly={show} onChange={(e) => handleUserNameChange(e.target.value)}/>
-
-        {/* <FormAreasDefault type="password" label="Şifre:" input={password} readOnly={show} onChange={(e) => handlePasswordChange(e.target.value)}/> */}
-
         <FormAreas type="password" label="Şifre:" input={password} readOnly={show} onChange={(e) => handlePasswordChange(e.target.value)}/>
-        
+      
    
+
         <KaydetButton isclicked={edit} onClick={() => {toggleEdit(); succcessMessage(); updateInfos(); }}/> 
         
       </form>

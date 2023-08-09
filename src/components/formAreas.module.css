@@ -25,7 +25,15 @@
     font-size: 15px;
     padding-left: 0.5rem;
    
-    
+}
+
+.formInputDisabled{
+    background-color: #6299e1;
+    border: none;
+    border-radius: 10px;
+    color: aliceblue;
+    font-size: 15px;
+    padding-left: 0.5rem;
 }
 
 
@@ -81,4 +89,15 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield; /* Firefox */
+}
+
+.options{
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+.optionContainer{
+    background-color: rgb(38, 113, 212);
+    width: 195px;
+    border-radius: 10px;
+    color: aliceblue;
 }
