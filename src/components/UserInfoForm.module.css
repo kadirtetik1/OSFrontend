@@ -102,6 +102,25 @@
     box-shadow: 0px 0px 5px black;
 }
 
+.formInput{
+    background-color: rgb(38, 113, 212);
+    border: none;
+    border-radius: 10px;
+    color: aliceblue;
+    font-size: 15px;
+    padding-left: 0.5rem;
+   
+}
+
+.formInputDisabled{
+    background-color: #6299e1;
+    border: none;
+    border-radius: 10px;
+    color: aliceblue;
+    font-size: 15px;
+    padding-left: 0.5rem;
+}
+
 /* @media screen and (max-width: 950px){
     
     .container{

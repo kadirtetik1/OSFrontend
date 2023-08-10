@@ -10,7 +10,7 @@ import UserInfoAreas from './UserInfoAreas';
 
 const userInfos = (props) => {
 
-  const name = localStorage.getItem("name");
+  const name = localStorage.getItem("fullname");
   const username = localStorage.getItem("username");
 
 
@@ -23,6 +23,7 @@ const userInfos = (props) => {
 
         <div className={style.closeContainer}>
 
+          
             <div className={style.userNameImage}>
                 <div className={style.userImage}><BiUser style={{color:"black"}} size={25}/></div> {/* Daha sonra profil fotosunu ekle ve db'den çek! */}
                 <div className={style.names}>

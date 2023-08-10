@@ -6,6 +6,7 @@ import {PiStudentFill} from "react-icons/pi";
 import { createAPIEndpoint, EndPoints } from '../api';
 import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {useNavigate } from 'react-router-dom'
 
 
 const Register = (props) => {
@@ -16,6 +17,8 @@ const Register = (props) => {
   const[mail, setMail] = useState("");
   const[userName, setUserName] = useState("");
   const[password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleRoleChange = (value) => {
     setAcademicRole(value);
@@ -65,6 +68,8 @@ const Register = (props) => {
           });
       };
       showToastMessage();
+      
+      
       console.log(res)}
       ).catch(err => console.log(err));
 
@@ -77,6 +82,8 @@ const Register = (props) => {
           toast.info(res.data, {
               position: toast.POSITION.TOP_RİGHT
           });
+
+          
       };
       showToastMessage();
       console.log(res)}

@@ -26,7 +26,7 @@ const FormAreas = (props) => {
     <div className={styles.container1}>
 <div className={styles.userContents1}>
         <label htmlFor="formInput" className={styles.formLabel1}>{props.label}</label>
-        <input type={show} id="formInput" defaultValue={props.input}  className={styles.formInput1} onChange={props.onChange} readOnly ={props.readOnly}/>
+        <input type={show} id="formInput" defaultValue={props.input}  className={props.classname} onChange={props.onChange} readOnly ={props.readOnly}/>
 
         <div className={styles.passwordButton}  onClick={(event) => { showPassword(event); changeIcon(event); }}>{icon}</div>
         </div>

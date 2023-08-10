@@ -7,6 +7,7 @@ import StudentsHome from './screens/students/StudentsHome';
 import TeachersHome from './screens/teachers/TeachersHome';
 import UserScreen from './screens/UserScreen';
 import ProtectedRouter from './ProtectedRouter';
+import Login from './components/Login';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,6 +24,7 @@ root.render(
         </Route>
       
         <Route index element={<App />} />
+        <Route path="login" element={<Login />} />
         
        
         

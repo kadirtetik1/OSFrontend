@@ -6,6 +6,8 @@ import {GiTeacher} from "react-icons/gi";
 import {PiStudentFill} from "react-icons/pi";
 import { createAPIEndpoint, EndPoints } from '../api';
 import jwt from 'jwt-decode'
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = (props) => {
 
@@ -51,8 +53,14 @@ const Login = (props) => {
         
         if(res.data == "Kullanıcı adı veya şifre hatalı!"){
 
-          alert(res.data);
-          event.preventDefault();
+          const showToastMessage = () => {
+            toast.error(res.data, {
+                position: toast.POSITION.TOP_RİGHT
+            });
+        };
+        showToastMessage();
+
+          // event.preventDefault();
           
         }
         else{
@@ -61,6 +69,8 @@ const Login = (props) => {
           localStorage.setItem("Token", res.data.accessToken);
           const decode = jwt(res.data.accessToken);
           localStorage.setItem("Id", decode.id); 
+          localStorage.setItem("username", decode.username); 
+          localStorage.setItem("fullname", decode.fullname); 
         }
 
       }).catch(err => console.log(err));
@@ -74,8 +84,14 @@ const Login = (props) => {
 
         if(res.data == "Kullanıcı adı veya şifre hatalı!"){
 
-          alert(res.data);
-          event.preventDefault();
+          const showToastMessage = () => {
+            toast.error(res.data, {
+                position: toast.POSITION.TOP_RİGHT
+            });
+        };
+        showToastMessage();
+
+          // event.preventDefault();
           
         }
         else{
@@ -84,6 +100,8 @@ const Login = (props) => {
           localStorage.setItem("Token", res.data.accessToken);
           const decode = jwt(res.data.accessToken);
           localStorage.setItem("Id", decode.id); 
+          localStorage.setItem("username", decode.username); 
+          localStorage.setItem("fullname", decode.fullname); 
           
         }
 
@@ -160,7 +178,7 @@ const Login = (props) => {
                </form>
                
             </div>
-          
+            <ToastContainer />
         </div>
       )
 
