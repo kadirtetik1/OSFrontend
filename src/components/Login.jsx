@@ -173,7 +173,7 @@ const Login = (props) => {
 
                 <div className={styles.links}>
 
-                    <a href='#'>Şifremi Değiştir</a>
+                    
                     <a href='#'>Şifremi Unuttum</a>
 
                 </div>

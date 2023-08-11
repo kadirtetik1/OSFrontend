@@ -90,10 +90,14 @@ const errorEmptyAreas = () => {
     createAPIEndpoint(EndPoints.student).getById(userId).then((res) =>{
       setRes(res);
 
+      console.log(res); 
+      console.log("res"); 
     
     }).catch(err => console.log(err));
 
   }, [])
+
+  
 
 function updateInfos(){
 
@@ -117,7 +121,7 @@ function updateInfos(){
   gender1!=""? gender2=gender1 : gender2=gender;
   phone!=""? phone_number1=phone : phone_number1=phone_number;
   
-  academic_role=="student" || academic_role=="Öğrenci" ? academic_role1="Öğrenci" : academic_role1="Öğretmen";  // Değiştirmiyor kontrol et!
+  academic_role=="student" || academic_role=="Öğrenci" ? academic_role1="Öğrenci" : academic_role1="Öğretmen"; 
 
   const data ={
     id: userId,
@@ -163,6 +167,8 @@ function updateInfos(){
 
   // Registerdaki gibi sisteme kayıtlı aynı kullanıcı adı veya e posta varsa değiştirmesine izin verme!
 
+      
+
 }
 
 
@@ -189,6 +195,11 @@ edit ? editColor="#01b671" : editColor="black";
   let user_name = res?.data.user_name;
   let password = res?.data.password;
 
+  let fullname= name + " " + last_name;
+
+  localStorage.setItem("username", user_name); // Değişiklik olduğunda sağ taraftaki bilgileri de güncellesin diye yazıldı..
+  localStorage.setItem("fullname", fullname);
+
 
   // function succcessMessage () {
   //   setSuccess(!success);
@@ -203,10 +214,8 @@ edit ? editColor="#01b671" : editColor="black";
 
     <div className={styles.container1}>
 
-    
     <div className={styles.container}>
 
-   
         <div className={styles.infosContainer}>
             <img src={props.image} alt="" className={styles.image}></img>
             <div className={styles.infos}>

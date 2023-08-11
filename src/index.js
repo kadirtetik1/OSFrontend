@@ -9,6 +9,7 @@ import UserScreen from './screens/UserScreen';
 import ProtectedRouter from './ProtectedRouter';
 import Login from './components/Login';
 import styles from './components/Login.module.css'
+import CourseSchedule from './screens/students/CourseSchedule';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,6 +23,7 @@ root.render(
           <Route path="studentsHome" element={<StudentsHome />} />
           <Route path="teachersHome" element={<TeachersHome />} />
           <Route path="userInfos" element={<UserScreen />} />
+          <Route path="schedule" element={<CourseSchedule />} />
         </Route>
       
         <Route index element={<App />} />

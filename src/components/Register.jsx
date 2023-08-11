@@ -68,7 +68,10 @@ const Register = (props) => {
           });
       };
       showToastMessage();
-      setTimeout(() => navigate("/login"), 2000);
+      
+      if(res.data==="Kayıt Başarılı! Giriş sayfasına yönlendiriliyorsunuz."){
+        setTimeout(() => navigate("/login"), 2000);
+      }
       
       console.log(res)}
       ).catch(err => console.log(err));
@@ -84,7 +87,11 @@ const Register = (props) => {
           });
       };
       showToastMessage();
-      setTimeout(() => navigate("/login"), 2000);
+
+      if(res.data==="Kayıt Başarılı! Giriş sayfasına yönlendiriliyorsunuz."){
+        setTimeout(() => navigate("/login"), 2000);
+      }
+     
       
       console.log(res)}
       ).catch(err => console.log(err));

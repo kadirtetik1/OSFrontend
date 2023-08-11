@@ -44,7 +44,7 @@ const StuNavbar = () => {
             </li>
 
             <li>
-                <Link style={{ textDecoration: 'none' }} >  {/* to="/dersprogramı" */}
+                <Link style={{ textDecoration: 'none' }} to="/schedule" > 
                 <motion.div className={styles.navItem} whileHover={{scale:1.1}}>
                     Ders Programı
                 </motion.div>
