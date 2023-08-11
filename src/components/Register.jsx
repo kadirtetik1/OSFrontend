@@ -68,7 +68,7 @@ const Register = (props) => {
           });
       };
       showToastMessage();
-      
+      setTimeout(() => navigate("/login"), 2000);
       
       console.log(res)}
       ).catch(err => console.log(err));
@@ -82,10 +82,10 @@ const Register = (props) => {
           toast.info(res.data, {
               position: toast.POSITION.TOP_RİGHT
           });
-
-          
       };
       showToastMessage();
+      setTimeout(() => navigate("/login"), 2000);
+      
       console.log(res)}
       ).catch(err => console.log(err));
 

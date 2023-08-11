@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from './formAreas.module.css'
 
-const FormAreaOptions = (props) => {
-
+const FormAreaOption2 = (props) => {
   return (
     <div className={styles.container}>
 
@@ -12,11 +11,8 @@ const FormAreaOptions = (props) => {
 
         <select className={styles.optionContainer} disabled={props.disabled} onChange={props.onChange}>
         <option value="" hidden="hidden">{props.selected}</option>
-        <option className={styles.options} value="Mühendislik">Mühendislik</option>
-        <option className={styles.options} value="Hukuk">Hukuk</option>
-        <option className={styles.options} value="Sağlık">Sağlık</option>
-        <option className={styles.options} value="İşletme">İşletme</option>
-        <option className={styles.options} value="Fen-Edebiyat">Fen-Edebiyat</option>
+        <option className={styles.options} value="Erkek">Erkek</option>
+        <option className={styles.options} value="Kadın">Kadın</option>
 
         </select>
         
@@ -26,4 +22,4 @@ const FormAreaOptions = (props) => {
   )
 }
 
-export default FormAreaOptions
+export default FormAreaOption2

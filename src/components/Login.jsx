@@ -111,6 +111,10 @@ const Login = (props) => {
   
 
     return props.isclicked ? (
+
+      <div className={props.container}>
+
+      
         <div className={styles.background} >
 
          
@@ -118,7 +122,10 @@ const Login = (props) => {
             <div className={styles.form}>
 
             <div className={styles.closeContainer}>
-            <div className={styles.close}  onClick={() => props.closeLogin(false)}><FiX size={'2rem'}/></div>
+              <div className={props.closeShow}>
+                <div className={styles.close}  onClick={() => props.closeLogin(false)}><FiX size={'2rem'}/></div>
+                </div>
+            
             </div>
 
                <form className={styles.formContainer}>
@@ -179,6 +186,8 @@ const Login = (props) => {
                
             </div>
             <ToastContainer />
+        </div>
+
         </div>
       )
 

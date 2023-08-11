@@ -8,6 +8,9 @@ import { createAPIEndpoint, EndPoints } from '../api';
 import {ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormAreaOptions from './FormAreaOptions';
+import FormAreaOption2 from './FormAreaOption2';
+import { AxiosError } from 'axios';
+
 
 
 
@@ -39,6 +42,12 @@ const kaydetSuccess = () => {
 
 const kaydetError = () => {
   toast.error("Bir Hatayla Karşılaşıldı!", {
+      position: toast.POSITION.BOTTOM_RIGHT
+  });
+};
+
+const errorEmptyAreas = () => {
+  toast.error("Lütfen Boş Bırakılan Alanları Doldurunuz!", {
       position: toast.POSITION.BOTTOM_RIGHT
   });
 };
@@ -128,9 +137,6 @@ function updateInfos(){
   createAPIEndpoint(EndPoints.student).put(data).then(put =>{
     
     console.log(put);
-    console.log(put.status);
-
-    console.log(put.data);
 
     if(put?.status===200){
       kaydetSuccess();
@@ -138,11 +144,22 @@ function updateInfos(){
       setTimeout(() => window.location.reload(), 1000);
       
     }
+
+   
+
+  }).catch(err => { 
+    console.log(err);
+    if(err.message==="Request failed with status code 400"){
+
+      errorEmptyAreas();
+    }
     else{
       kaydetError();
     }
+    
 
-  }).catch(err => console.log(err));
+  
+  });
 
   // Registerdaki gibi sisteme kayıtlı aynı kullanıcı adı veya e posta varsa değiştirmesine izin verme!
 
@@ -173,10 +190,10 @@ edit ? editColor="#01b671" : editColor="black";
   let password = res?.data.password;
 
 
-  function succcessMessage () {
-    setSuccess(!success);
+  // function succcessMessage () {
+  //   setSuccess(!success);
     
-   }
+  //  }
 
   let inputClassName=styles.formInput;
   show ? inputClassName=styles.formInputDisabled : inputClassName=styles.formInput;
@@ -207,12 +224,16 @@ edit ? editColor="#01b671" : editColor="black";
         <FormAreasDefault classname={inputClassName} type="text" label="Soyad:" input={last_name} readOnly={show} onChange={(e) => handleLastNChange(e.target.value)}/>
         <FormAreasDefault classname={inputClassName} type="text" label="Akademik Ünvan:" input={academic_role} readOnly={true}/>
        
-        <FormAreaOptions type="text" label="Fakülte Deneme:" selected={department} disabled={show} onChange={(e) => {
+        <FormAreaOptions type="text" label="Fakülte:" selected={department} disabled={show} onChange={(e) => {
           const selectedDepartment = e.target.value;
           setDepartment(selectedDepartment); console.log(department1);
         }} />
 
-        <FormAreasDefault classname={inputClassName} type="text" label="Cinsiyet:" input={gender} readOnly={show} onChange={(e) => handleGenderChange(e.target.value)}/>
+        <FormAreaOption2 type="text" label="Cinsiyet:" selected={gender} disabled={show} onChange={(e) => {
+          const selectedGender = e.target.value;
+          setGender(selectedGender); console.log(gender1);
+        }} /> 
+
         <FormAreasDefault classname={inputClassName} type="email" label="E-mail Adres:" input={e_mail} readOnly={show} onChange={(e) => handleMailChange(e.target.value)}/>
         <FormAreasDefault classname={inputClassName} type="number" label="Telefon Numarası:" input={phone_number} readOnly={show} onChange={(e) => handlePhoneChange(e.target.value)}/>
         <FormAreasDefault classname={inputClassName} type="text" label="Kullanıcı Adı:" input={user_name} readOnly={show} onChange={(e) => handleUserNameChange(e.target.value)}/>
