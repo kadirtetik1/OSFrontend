@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import styles from './StuNavbar.module.css'
+import styles from '../../students/components/StuNavbar.module.css'
 import {motion} from "framer-motion";
 import { BiUser} from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
 import UserInfos from '../../../components/UserInfos';
 
-
-
-const StuNavbar = () => {
+const TeacherNavbar = () => {
 
     const [userInfos, setUserInfos] = useState(false);
 
@@ -23,7 +21,7 @@ const StuNavbar = () => {
     
     <div className={styles.container}>
 
-        <Link style={{ textDecoration: 'none' }} className={styles.logo} to="/studentsHome"><h1>Logo</h1></Link>
+        <Link style={{ textDecoration: 'none' }} className={styles.logo} to="/teachersHome"><h1>Logo</h1></Link>
 
         <div className={styles.searchContainer}>
         <input className={styles.searchInput} type="text" placeholder='Ders Ara...'/>
@@ -36,7 +34,7 @@ const StuNavbar = () => {
         <ul className={styles.navItemsRight}>
 
             <li>
-                <Link style={{ textDecoration: 'none' }} to="/studentsHome">  {/* teacher =>   to="/teachersHome" ÇÖZ!  */}
+                <Link style={{ textDecoration: 'none' }} to="/teachersHome">  {/* teacher =>   to="/teachersHome" ÇÖZ!  */}
                 <motion.div className={styles.navItem} whileHover={{scale:1.1}}>
                     Anasayfa
                 </motion.div>
@@ -44,17 +42,17 @@ const StuNavbar = () => {
             </li>
 
             <li>
-                <Link style={{ textDecoration: 'none' }} to="/add-drop"  >
+                <Link style={{ textDecoration: 'none' }} to="/create-course" > 
                 <motion.div className={styles.navItem} whileHover={{scale:1.1}}>
-                    Ders Ekle Bırak
+                    Ders Oluştur
                 </motion.div>
                 </Link>
             </li>
 
             <li>
-                <Link style={{ textDecoration: 'none' }} to="/given-courses" > 
+                <Link style={{ textDecoration: 'none' }} to="/my-courses" >  
                 <motion.div className={styles.navItem} whileHover={{scale:1.1}}>
-                    Açılan Dersler
+                    Verdiğim Dersler
                 </motion.div>
                 </Link>
             </li>
@@ -78,4 +76,4 @@ const StuNavbar = () => {
   )
 }
 
-export default StuNavbar
+export default TeacherNavbar

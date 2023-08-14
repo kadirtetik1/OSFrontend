@@ -1,18 +1,14 @@
 import React from 'react'
 import TeacherNavbar from './components/TeacherNavbar';
-import styles from './TeachersHome.module.css'
 
 
-const TeachersHome = () => {
+const MyCourses = () => {
   return (
     <div>
       <TeacherNavbar/>
-      <h1>Anasayfa</h1>
-
-    
-      
+      <h1>Verdiğim Dersler</h1>
     </div>
   )
 }
 
-export default TeachersHome
+export default MyCourses

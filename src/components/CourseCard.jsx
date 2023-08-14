@@ -45,7 +45,7 @@ const CourseCard = (props) => {
 
 </div>
 
-<motion.div className={styles.addButton} whileHover={{scale:1.05}}>Derse kayıt Ol</motion.div>
+<motion.div className={styles.addButton} whileHover={{scale:1.05}}>{props.button}</motion.div>
         
 </div>
 

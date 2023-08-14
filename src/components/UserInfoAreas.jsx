@@ -24,13 +24,13 @@ const UserInfoAreas = (props) => {
     }
 
     else if(props.title==="Aldığım Dersler"){
-      showToastMessage();
+      navigate("/taken-courses");
       
     }
 
     else if(props.title==="Ders Programım"){
 
-      alert(props.title)
+      navigate("/schedule");
     }
 
     else if(props.title==="Çıkış"){
