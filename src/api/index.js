@@ -9,6 +9,7 @@ export const EndPoints = {   //controller names
     course:"course",
     student_login : "student/userControl",
     teacher_login : "teacher/userControl",
+    base:"base"
 }
 
 export const createAPIEndpoint = endpoint => {
@@ -21,7 +22,10 @@ export const createAPIEndpoint = endpoint => {
         post: newUser => axios.post(url, newUser),  
         put: updateUser => axios.put(url, updateUser ),
         delete: id=> axios.delete(url + id),
-        
+    
     }
+
+    
 }
+
 

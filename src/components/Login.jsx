@@ -71,6 +71,12 @@ const Login = (props) => {
           localStorage.setItem("Id", decode.id); 
           localStorage.setItem("username", decode.username); 
           localStorage.setItem("fullname", decode.fullname); 
+ 
+          // createAPIEndpoint(EndPoints.base, {                 // !!! headersta tokenı gönderip doğru olup olmadığını kontrol et, içersinden teacher id'yi çek.
+          //   Headers:{
+          //     `Token: ${res.data.accessToken}`
+          //   }
+          // }).
         }
 
       }).catch(err => console.log(err));

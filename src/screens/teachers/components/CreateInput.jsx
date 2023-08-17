@@ -5,7 +5,7 @@ const CreateInput = () => {
   return (
     <div>
 
-        <form className={styles.formContainer}>
+        {/* <form className={styles.formContainer}>
           <div className={styles.labelInput} >
           <label className={styles.formLabel} htmlFor="formInput" >Fakülte:</label>
           <input className={styles.formInput} type="text"/>
@@ -36,12 +36,13 @@ const CreateInput = () => {
           <input className={styles.formInput} type="text"/>
           </div>
 
-          <div className={styles.buttonContainer}>
-          <button className={styles.button}>Oluştur</button>
-          </div>
+          <motion.div className={styles.buttonContainer} whileHover={{scale:1.05}}>
+          <motion className={styles.button}>Kaydet Ve Gün Belirle</motion>
+         
+          </motion.div>
           
 
-        </form>
+        </form> */}
       
     </div>
   )

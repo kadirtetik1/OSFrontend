@@ -4,11 +4,18 @@ import CourseCard from '../../components/CourseCard';
 import style from './CreateCourse.module.css';
 import CreateInput from './components/CreateInput';
 import styles from './components/CreateInput.module.css'
+import { useNavigate } from 'react-router-dom';
+import {motion} from "framer-motion";
+import { createAPIEndpoint, EndPoints } from '../../api';
+import {ToastContainer, toast } from 'react-toastify';
 
 const CreateCourse = (props) => {
 
   const[department, setDepartment] = useState("");
   const departmentChange = (event) => {setDepartment(event);} 
+  
+  const[faculty, setFaculty] = useState("");
+  const facultyChange = (event) => {setFaculty(event);} 
 
   const[hours, setHours] = useState("");
   const hoursChange = (event) => {setHours(event);}
@@ -25,25 +32,76 @@ const CreateCourse = (props) => {
   const[semester, setSemester] = useState("");
   const semesterChange = (event) => {setSemester(event);}
 
+  const navigate = useNavigate();
 
-  // datada dolu gelen yerleri(user bilgileri vs) db'den çek yazdır, gerisini güncelle.
+  let taken_capacity=0;  // Başta 0 gönder, daha sonra db'ye bağlayıp öğrenci kayıt oldukça arttır.
 
 const data = {
   unvan:"Prof.Dr.",
-  name:"Ahmet Çelik",
+  name:localStorage.getItem("fullname"),
   teacherImage:"https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg",
   courseImage:"https://www.ceyrekmuhendis.com/wp-content/uploads/2020/09/one-cikan-1.jpg",
-  departmentName:department,
-  period:semester,
-  courseTitle:courseName,
-  courseCode:code,
-  takenCapacity:"0",
-  freeCapacity:capacity,
+  takenCapacity:taken_capacity,
+  department:department,
+  faculty:faculty,
+  semester:semester,
+  course_name:courseName,
+  course_code:code,
+  capacity:capacity,
   weeklyHours:hours,
+  teacherId:localStorage.getItem("Id"),
 
 }
 
-console.log(data);
+const kaydetError = () => {
+  toast.error("Bir Hatayla Karşılaşıldı!", {
+      position: toast.POSITION.BOTTOM_RIGHT
+  });
+};
+
+const errorEmptyAreas = () => {
+  toast.error("Lütfen Boş Bırakılan Alanları Doldurunuz!", {
+      position: toast.POSITION.BOTTOM_RIGHT
+  });
+};
+
+const successMessage = () => {
+  toast.success("Dersiniz Başarıyla Oluşturuldu!", {
+      position: toast.POSITION.BOTTOM_RIGHT
+  });
+};
+  const successMessage2 = () => {
+  toast.success("Ders Programı Sayfasına Yönlendiriliyorsunuz...", {
+      position: toast.POSITION.BOTTOM_RIGHT
+  });
+};
+
+const createCourse = () => {
+
+    
+  createAPIEndpoint(EndPoints.course).post(data).then((res) =>{
+
+
+    if(res?.status===200){
+      successMessage();
+      setTimeout(() =>  successMessage2(), 1500);
+      setTimeout(() => navigate("/select-date"), 3500);
+      
+    }
+    
+    console.log(res); 
+  
+  }).catch(err => {
+    if(err.message==="Request failed with status code 400"){
+
+      errorEmptyAreas();
+    }
+    else{
+      kaydetError();
+    }
+  });
+
+}
 
   return (
     <div>
@@ -53,7 +111,6 @@ console.log(data);
      
      <div  className={style.container}>
 
-     
      <div className={style.createCourse}>
 
       <div className={style.infos}>
@@ -68,8 +125,10 @@ console.log(data);
   <div className={styles.labelInput} >
   <label className={styles.formLabel} htmlFor="formInput" >Fakülte:</label>
 
-  <select className={styles.formSelect} >
-        
+  <select className={styles.formSelect} onChange={(e) => facultyChange(e.target.value)}>
+
+        <option value="" disabled selected>Fakültenizi Seçiniz</option>
+
         <option className={styles.options} value="Mühendislik">Mühendislik</option>
         <option className={styles.options} value="Hukuk">Hukuk</option>
         <option className={styles.options} value="Sağlık">Sağlık</option>
@@ -101,17 +160,19 @@ console.log(data);
   <div className={styles.labelInput}>
   <label className={styles.formLabel} htmlFor="formInput" >Dönem:</label>
   <select className={styles.formSelect} onChange={(e) => semesterChange(e.target.value)}>
-   
+
+        <option value="" disabled selected>Dönem Seçiniz</option>
         <option className={styles.options} value="Güz">Güz</option>
         <option className={styles.options} value="Bahar">Bahar</option>
   </select>
   </div>
 
   <div className={styles.labelInput}>
-  <label className={styles.formLabel} htmlFor="formInput" >Haftalık Saat Sayısı:</label>
+  <label className={styles.formLabel} htmlFor="formInput" >Haftalık Ders Saati:</label>
 
-  <select className={styles.formSelect}  onChange={(e) => hoursChange(e.target.value)}>
-   
+  <select className={styles.formSelect} onChange={(e) => hoursChange(e.target.value)}>
+
+        <option value="" disabled selected>Ders Saati Sayısını Seçiniz</option>
         <option className={styles.options} value="1">1</option>
         <option className={styles.options} value="2">2</option>
         <option className={styles.options} value="3">3</option>
@@ -126,13 +187,13 @@ console.log(data);
 
   </div>
 
-  <div className={styles.labelInput}>
+  {/* <div className={styles.labelInput}>
   <label className={styles.formLabel} htmlFor="formInput" >Programdan Gün Seçiniz</label>
   <input className={styles.formInput} type="text" />
-  </div>
+  </div> */}
 
   <div className={styles.buttonContainer}>
-  <button className={styles.button}>Oluştur</button>
+  <div className={styles.button} onClick={ () => {createCourse(); console.log(data); }}>Kaydet Ve Gün Belirle</div>
   </div>
   
 
@@ -152,6 +213,7 @@ console.log(data);
 
      </div>
      </div>
+     <ToastContainer/>
     </div>
   )
 }

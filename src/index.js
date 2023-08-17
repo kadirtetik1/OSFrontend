@@ -15,6 +15,7 @@ import MyCourses from './screens/teachers/MyCourses';
 import AddDrop from './screens/students/AddDrop';
 import TakenCourses from './screens/students/TakenCourses';
 import GivenCourses from './screens/students/GivenCourses';
+import Calendar from './screens/teachers/components/Calendar';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -34,6 +35,7 @@ root.render(
           <Route path="taken-courses" element={<TakenCourses />} />
           <Route path="create-course" element={<CreateCourse />} />
           <Route path="my-courses" element={<MyCourses />} />
+          <Route path="select-date" element={<Calendar />} />
         </Route>
       
         <Route index element={<App />} />
