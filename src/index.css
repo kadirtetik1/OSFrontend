@@ -13,3 +13,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.fc-timegrid-col{
+background-color: #eeeff2 !important;
+}
+
+.fc-timegrid-slot {
+  height: 600px;
+}
+
+/* Etkinlikler */
+.fc-daygrid-event {
+  padding: 200px;
+}
+
+.fc-timegrid-slot{
+  padding: 20px !important;
+}
+
+.fc-scrollgrid-sync-inner{
+  background-color: antiquewhite;
+  padding: 15px;
+  font-weight: 600;
+
+}
+
+
+.fc-timegrid-slot-label{
+  background-color: antiquewhite;
+  font-weight: 600;
+}
+
+.btn-primary{
+  background-color: #0076fa;
+  color: aliceblue;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  text-decoration:none;
+  border:none;
+}
+
+

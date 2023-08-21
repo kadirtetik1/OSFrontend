@@ -81,6 +81,7 @@ const createCourse = () => {
     
   createAPIEndpoint(EndPoints.course).post(data).then((res) =>{
 
+    console.log(res);
 
     if(res?.status===200){
       successMessage();
