@@ -18,10 +18,9 @@ moment.locale('tr');
 
   const SelectDate = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
+    const [selectable, setSelectable] = useState(true);
     const [events, setEvents] = useState([]);
     const [eventTitle, setEventTitle] = useState('');
-    
-    // const [courseHour, setcourseHour] = useState('');  // !!!! Kalan ders saatini useState ile tutacaksın ama şu anda güncellenen bilgiyi alamıyor. ÇÖZ!!!
     const [CourseTitle, setCourseTitle] = useState('Makine Elemanları');
     const [showAlert, setShowAlert] = React.useState(false);
 
@@ -32,25 +31,23 @@ moment.locale('tr');
 
     let takenHours = courseEndHour - courseStartHour;
     let dayName = daysOfWeek[dayIndex];
-    let courseHours = 7;
-    let availableHours = courseHours - takenHours;
-    
+    let courseHours = localStorage.getItem("WeeklyHours");
+    let courseName = localStorage.getItem("CourseName");
+    const [availableHours, setAvailableHours] = useState(courseHours);
 
-    const showHours = () => {
-      toast.info(`Bu ders için toplam ${courseHours} saat seçebilirsiniz. `,{
-          position: toast.POSITION.END_RIGHT
+    const FullOfHours = () => {
+      toast.info(`Toplam Ders Saati Sayısına Ulaştınız.`,{
+          position: toast.POSITION.BOTTOM_RIGHT
       });
     };
 
-    useEffect(() => {
-      showHours();
-    }, []);
-
-    const showAvailableHours = () => {
-      toast.info(`Bu ders için ${availableHours} saat daha belirlemelisiniz. `,{
-          position: toast.POSITION.END_RIGHT
+    const OutOfHours = () => {
+      toast.error(`Toplam Ders Saatinden Fazla Seçim Yaptınız.`,{
+      position: toast.POSITION.BOTTOM_RIGHT
       });
     };
+
+
 
     const handleSelectSlot = ({ start, end }) => {
       setSelectedSlot({ start, end });
@@ -58,34 +55,65 @@ moment.locale('tr');
     };
     
 
-  const handleEventAdd = () => {  // Tıklayınca yeni etkinlik oluşturuyor.
-    if (selectedSlot && CourseTitle) {
+  const handleEventAdd = () => { // Ders Saati Ekle Butonu
+    if (selectedSlot) {
       const newEvent = {
         id: events.length + 1,
-        title: CourseTitle,
+        title: courseName,
         start: selectedSlot.start,
         end: selectedSlot.end,
       };
 
-      setEvents([...events, newEvent]);
-      setSelectedSlot(null);
-      setEventTitle('');
-      
-      console.log(newEvent);
-      console.log(selectedSlot);
 
-      console.log('Başlangıç Saati:', courseStartHour);
-      console.log('Bitiş Saati:', courseEndHour);
-      console.log('Kullanılan Saat:', takenHours);
 
-      console.log('Seçilen gün:', dayName);
 
-      courseHours=availableHours;
+      if(availableHours - takenHours>=0 && availableHours>=takenHours){
+
+        setEvents([...events, newEvent]);
+        setSelectedSlot(null);
+        setEventTitle('');
+        
+        setAvailableHours(availableHours - takenHours); 
+  
+        }
+  
+        else{
+
+          if(events.length>0){   // 2 tane ders var ama 3. aşıyorsa seçilebilirliği kapatıyor. DÜZELT !!!
+
+          FullOfHours();
+          setSelectable(false);
+          closeContainer();
+
+
+          }
+
+          else{
+            setSelectedSlot(null);
+            OutOfHours();
+
+          }
+          
+        }
+
       
-      showAvailableHours();
-      
+
     }
+
+
+
+
+    // if(availableHours>=takenHours){
+
+    // }
+
+    // else{
+    //   alert("123")
+    // }
+
   };
+
+
 
   const handleEventClick = (info) => {
     if (window.confirm("Ders kaydını silmek istediğinizden emin misiniz?")) {
@@ -94,8 +122,8 @@ moment.locale('tr');
     }
   };
 
-  const handleDateClick = (arg) => { // bind with an arrow function
-    alert(arg.dateStr);
+  const handleDateClick = (arg) => { 
+    // alert(arg.dateStr);
     
   }
   
@@ -111,6 +139,8 @@ moment.locale('tr');
   const handleCloseAlert = () => {
     setShowAlert(false);  // sweet alert fnc.ları
   };
+
+
   
   return (
 
@@ -129,7 +159,7 @@ moment.locale('tr');
         confirmBtnText="Tamam"
     
       >
-        <p>Takvim üzerinden gün ve saat seçimi yapabilirsiniz.</p>
+        <p><span className={styles.courseHoursTitle}>Bu ders için seçmeniz gereken ders saati sayısı:</span> <span className={styles.courseHours}>{courseHours}</span></p>
         {/* <p>Uzun tıklayarak aynı gün içinde çoklu seçim yapabilirsiniz.</p> */}
       </SweetAlert>
     </div>
@@ -145,7 +175,7 @@ moment.locale('tr');
         slotMinTime="09:00:00" // Minimum saat aralığını belirliyoruz
         slotMaxTime="19:00:00" // Maksimum saat aralığını belirliyoruz
         slotDuration="01:00:00" // Saat aralığı sıklığını belirliyoruz
-        weekends={true} // Hafta sonlarını göstermiyoruz
+        weekends={true} 
         dayHeaderFormat={{ weekday: 'long' }} // Günlerin yanındaki tarihleri siler
         slotLabelFormat={{ hour: 'numeric', minute: '2-digit', omitZeroMinute: false }} // Başlıktaki tarih aralığını siler
         headerToolbar={{
@@ -161,9 +191,9 @@ moment.locale('tr');
         events={events}
         eventClick={handleEventClick}
         firstDay={1} // Pazartesi olarak ayarlıyoruz
-        hiddenDays={[0]} // Pazar gününü gizliyoruz
-        editable={true} 
-        selectable={true} // Seçilebilirliği aktif hale getiriyoruz
+        hiddenDays={[0,6]} // Ctesi ve Pazar gizlendi.
+        editable={true} // Kaydırılabilir yapıyor.
+        selectable={selectable} // Seçilebilirliği aktif hale getiriyoruz
         select={handleSelectSlot} // Slot seçildiğinde tetiklenecek işlev
         selectOverlap={false} // Seçilen slotun başka etkinliklerle çakışmasını engelliyoruz
 
@@ -183,12 +213,13 @@ moment.locale('tr');
           
           <div className={styles.ContentsContainer}>
 
-          <h4 className={styles.titles}><span className={styles.titlesIn} >Ders Adı: </span> {CourseTitle}</h4>
-          <h4 className={styles.titles}><span className={styles.titlesIn} >Başlangıç: </span> 
-          {selectedSlot.start.toLocaleString()} 
+          <h4 className={styles.titles}><span className={styles.titlesIn}>Ders Adı: </span><span className={styles.titlesOut}>{courseName}</span></h4>
+          
+          <h4 className={styles.titles}><span className={styles.titlesIn}>Başlangıç: </span><span className={styles.titlesOut}>{dayName} - <span></span>
+          {courseStartHour}:00</span>
           </h4>
-          <h4 className={styles.titles}><span className={styles.titlesIn}>Bitiş: </span> 
-          {selectedSlot.end.toLocaleString()} 
+          <h4 className={styles.titles}><span className={styles.titlesIn}>Bitiş: </span> <span className={styles.titlesOut}>{dayName} - <span></span>
+          {courseEndHour}:00</span>
           </h4>
           <button className={styles.AddButton} onClick={handleEventAdd}>Ders Saati Ekle</button>  
           </div>

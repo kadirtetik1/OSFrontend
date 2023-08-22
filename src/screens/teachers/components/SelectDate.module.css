@@ -51,7 +51,7 @@ align-items: center;
 
 .SelectDateContainer2{
   background-color: aliceblue;
-  width: 300px;
+  width: 350px;
   height: 325px;
   border-radius: 15px;
 }
@@ -62,14 +62,25 @@ align-items: center;
   color: rgb(0, 0, 0);
   /* border-bottom: 2px solid black; */
   padding-bottom: 4px;
-  width: 240px;
-  /* background-color: #0076fa; */
-  /* margin-left: 50px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  
+
 }
 
 .titlesIn{
   color: #01b671;
-  width: 200px !important;
+  width: 125px;
+  
+}
+
+.titlesOut{
+  
+  width: 150px;
+  font-weight: 500;
+ 
   
 }
 
@@ -126,6 +137,20 @@ align-items: center;
   
   height: 250px;
 
+}
+
+.courseHours{
+  background-color: #01b67141;
+  color:#01b671 ;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 50%;
+  /* border: 1px solid #01b671 ; */
+  
+}
+
+.courseHoursTitle{
+border-bottom: 2px solid #01b671;
 }
 
 

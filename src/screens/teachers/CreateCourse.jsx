@@ -42,6 +42,8 @@ const data = {
   teacherImage:"https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg",
   courseImage:"https://www.ceyrekmuhendis.com/wp-content/uploads/2020/09/one-cikan-1.jpg",
   takenCapacity:taken_capacity,
+
+  // Backendde karşılığı olanlar.
   department:department,
   faculty:faculty,
   semester:semester,
@@ -91,6 +93,10 @@ const createCourse = () => {
     }
     
     console.log(res); 
+    console.log(res.data); 
+    localStorage.setItem("CourseId", res.data.id);
+    localStorage.setItem("WeeklyHours", res.data.weeklyHours);
+    localStorage.setItem("CourseName", res.data.course_name);
   
   }).catch(err => {
     if(err.message==="Request failed with status code 400"){
