@@ -5,6 +5,7 @@ import {motion} from "framer-motion";
 import { BiUser} from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
 import UserInfos from '../../../components/UserInfos';
+import UserInfosTeacher from '../../../components/UserInfosTeacher';
 
 const TeacherNavbar = () => {
 
@@ -71,7 +72,7 @@ const TeacherNavbar = () => {
 
         </ul>
         </div>
-        <UserInfos isclicked={userInfos} closeInfo={setUserInfos}/>
+        <UserInfosTeacher isclicked={userInfos} closeInfo={setUserInfos}/>
     </div>
   )
 }

@@ -93,6 +93,12 @@
 
 }
 
+.image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
 @keyframes animate-in {
     from {
       opacity: 0;

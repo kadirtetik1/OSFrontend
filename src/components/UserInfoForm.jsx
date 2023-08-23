@@ -22,7 +22,6 @@ const [res, setRes] = useState(null);
 const userId= localStorage.getItem("Id");   //localden Id çekiyor.
 
 const [edit, setEdit] = useState(false);
-const [success, setSuccess] = useState(false);
 const [def, setDef] = useState(true);
 const [show, setShow] = useState(true);
 
@@ -84,16 +83,37 @@ const errorEmptyAreas = () => {
   const handleUserNameChange = (value) => {setUserN(value);}
   const handlePasswordChange = (value) => {setPass(value);}
 
-  
+  const role = localStorage.getItem("role"); 
+
+
+ 
+
   useEffect(() => {
 
-    createAPIEndpoint(EndPoints.student).getById(userId).then((res) =>{
-      setRes(res);
+    if(role==="student"){
 
-      console.log(res); 
-      console.log("res"); 
-    
-    }).catch(err => console.log(err));
+      createAPIEndpoint(EndPoints.student).getById(userId).then((res) =>{
+        setRes(res);
+  
+        console.log(res); 
+        console.log("res"); 
+      
+      }).catch(err => console.log(err));
+      
+    }
+
+    else if(role==="teacher"){
+
+      createAPIEndpoint(EndPoints.teacher).getById(userId).then((res) =>{
+        setRes(res);
+  
+        console.log(res); 
+        console.log("res"); 
+      
+      }).catch(err => console.log(err));
+
+
+    }
 
   }, [])
 
@@ -137,33 +157,55 @@ function updateInfos(){
 
   };
 
+  if(role==="student"){
 
-  createAPIEndpoint(EndPoints.student).put(data).then(put =>{
-    
-    console.log(put);
+    createAPIEndpoint(EndPoints.student).put(data).then(put =>{
+      console.log(put);
 
-    if(put?.status===200){
-      kaydetSuccess();
-
-      setTimeout(() => window.location.reload(), 1000);
-      
-    }
-
-   
-
-  }).catch(err => { 
-    console.log(err);
-    if(err.message==="Request failed with status code 400"){
-
-      errorEmptyAreas();
-    }
-    else{
-      kaydetError();
-    }
-    
-
+      if(put?.status===200){
+        kaydetSuccess();
+        setTimeout(() => window.location.reload(), 1000);
+        
+      }
   
-  });
+    }).catch(err => { 
+      console.log(err);
+      if(err.message==="Request failed with status code 400"){
+  
+        errorEmptyAreas();
+      }
+      else{
+        kaydetError();
+      }
+
+    });
+
+  }
+
+  else if(role==="teacher"){
+
+    createAPIEndpoint(EndPoints.teacher).put(data).then(put =>{
+      console.log(put);
+
+      if(put?.status===200){
+        kaydetSuccess();
+        setTimeout(() => window.location.reload(), 1000);
+        
+      }
+  
+    }).catch(err => { 
+      console.log(err);
+      if(err.message==="Request failed with status code 400"){
+  
+        errorEmptyAreas();
+      }
+      else{
+        kaydetError();
+      }
+      
+    });
+
+  }
 
   // Registerdaki gibi sisteme kayıtlı aynı kullanıcı adı veya e posta varsa değiştirmesine izin verme!
 
@@ -182,7 +224,19 @@ function updateInfos(){
 
 edit ? editColor="#01b671" : editColor="black";
 
+let profilPicture = "";
 
+if(role==="student"){
+
+  profilPicture="https://img.freepik.com/premium-photo/young-student-boy-smiling-happily-with-hand-hip-confident-positive-proud-friendly-attitude_1194-309973.jpg"
+
+}
+
+else if(role==="teacher"){
+
+  profilPicture="https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg"
+
+}
   console.log(res?.data);
 
   let name= res?.data.first_name;
@@ -199,12 +253,7 @@ edit ? editColor="#01b671" : editColor="black";
 
   localStorage.setItem("username", user_name); // Değişiklik olduğunda sağ taraftaki bilgileri de güncellesin diye yazıldı..
   localStorage.setItem("fullname", fullname);
-
-
-  // function succcessMessage () {
-  //   setSuccess(!success);
-    
-  //  }
+  
 
   let inputClassName=styles.formInput;
   show ? inputClassName=styles.formInputDisabled : inputClassName=styles.formInput;
@@ -217,7 +266,7 @@ edit ? editColor="#01b671" : editColor="black";
     <div className={styles.container}>
 
         <div className={styles.infosContainer}>
-            <img src={props.image} alt="" className={styles.image}></img>
+            <img src={profilPicture} alt="" className={styles.image}></img>
             <div className={styles.infos}>
                 <div className={styles.realName}>{name} {last_name}</div>
                 <div className={styles.userName}>{user_name}</div>

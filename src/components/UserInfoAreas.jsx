@@ -20,11 +20,21 @@ const UserInfoAreas = (props) => {
 
     if(props.title==="Profil Bilgileri"){
 
-      navigate("/userInfos");
+      navigate("/studentInfos");
+    }
+
+    else if(props.title==="Bilgileri Güncelle"){
+
+      navigate("/teacherInfos");
     }
 
     else if(props.title==="Aldığım Dersler"){
       navigate("/taken-courses");
+      
+    }
+    
+    else if(props.title==="Verdiğim Dersler"){
+      navigate("/my-courses");
       
     }
 
@@ -35,14 +45,16 @@ const UserInfoAreas = (props) => {
 
     else if(props.title==="Çıkış"){
 
-      alert("Çıkış yapmak istediğinize emin misiniz? ");  // Soru cevap şeklinde sor, if(answer=="yes") => çıkış..
-     
-      navigate("/");
       
-      localStorage.removeItem("Token");
-      localStorage.removeItem("Id");
-      localStorage.removeItem("username");
-      localStorage.removeItem("name");
+      if (window.confirm("Çıkış yapmak istediğinize emin misiniz?")) {
+
+        navigate("/");
+      
+        localStorage.clear();
+        
+      }
+     
+      
       
     }
   }

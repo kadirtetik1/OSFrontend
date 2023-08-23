@@ -64,9 +64,6 @@ moment.locale('tr');
         end: selectedSlot.end,
       };
 
-
-
-
       if(availableHours - takenHours>=0 && availableHours>=takenHours){
 
         setEvents([...events, newEvent]);
@@ -96,20 +93,8 @@ moment.locale('tr');
           
         }
 
-      
-
     }
 
-
-
-
-    // if(availableHours>=takenHours){
-
-    // }
-
-    // else{
-    //   alert("123")
-    // }
 
   };
 
@@ -119,6 +104,9 @@ moment.locale('tr');
     if (window.confirm("Ders kaydını silmek istediğinizden emin misiniz?")) {
       const updatedEvents = events.filter(event => event.id !== info.event.id);
       setEvents(updatedEvents);
+
+
+      // events.id.remove();                                                   !!! Şu an çalışmıyor, kontrol et tekrar bak!
     }
   };
 
@@ -141,6 +129,19 @@ moment.locale('tr');
   };
 
 
+  let days= [];
+  let startHours= [];
+  let endHours = [];
+  let eventList= [];
+
+  for(let i=0; events.length>i; i++){
+
+    days.push(daysOfWeek[events[i].start.getDay()])
+    startHours.push(events[i].start.getHours())
+    endHours.push(events[i].end.getHours())
+    eventList.push(events[i]);
+
+  }
   
   return (
 
@@ -192,12 +193,12 @@ moment.locale('tr');
         eventClick={handleEventClick}
         firstDay={1} // Pazartesi olarak ayarlıyoruz
         hiddenDays={[0,6]} // Ctesi ve Pazar gizlendi.
-        editable={true} // Kaydırılabilir yapıyor.
-        selectable={selectable} // Seçilebilirliği aktif hale getiriyoruz
+        editable={false} // Kaydırılabilir yapıyor.                       !!! Düzenlenen bilgileri çekemedin şimdlik false yaptın, DÜZELT!!
+        selectable={selectable} // Seçilebilirliği aktif hale getiriyor.
         select={handleSelectSlot} // Slot seçildiğinde tetiklenecek işlev
-        selectOverlap={false} // Seçilen slotun başka etkinliklerle çakışmasını engelliyoruz
+        selectOverlap={false} // Seçilen slotun başka etkinliklerle çakışmasını engelliyor
 
-        height={698} // Takvimin yüksekliğini belirli bir piksel değeri olarak ayarlayın
+        height={698}  
 
       />
 
@@ -230,7 +231,7 @@ moment.locale('tr');
       )}
 
       <div className={styles.ButtonContainer}>
-        <div className={styles.SendButton}>Gönder</div>
+        <div className={styles.SendButton} onClick={() => {console.log(events); console.log(days);console.log(startHours); console.log(endHours); console.log(eventList)}}>Gönder</div>
       </div>
 
 
