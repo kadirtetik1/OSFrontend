@@ -209,8 +209,7 @@ function updateInfos(){
 
   // Registerdaki gibi sisteme kayıtlı aynı kullanıcı adı veya e posta varsa değiştirmesine izin verme!
 
-      
-
+  
 }
 
 
@@ -256,6 +255,7 @@ else if(role==="teacher"){
   
 
   let inputClassName=styles.formInput;
+
   show ? inputClassName=styles.formInputDisabled : inputClassName=styles.formInput;
 
   

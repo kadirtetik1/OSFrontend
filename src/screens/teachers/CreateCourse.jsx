@@ -88,15 +88,18 @@ const createCourse = () => {
     if(res?.status===200){
       successMessage();
       setTimeout(() =>  successMessage2(), 1500);
-      setTimeout(() => navigate("/select-date"), 3500);
+      setTimeout(() => navigate("/select-date"), 3500);   //SelectDate'e gönderirken bilgileri güncellemen gerektiği için props üzerinden componente göndermelisin. Hepsini locale atmak yerine redux kullanman gerekebilir.
       
     }
     
-    console.log(res); 
-    console.log(res.data); 
+    // console.log(res); 
+    // console.log(res.data); 
+
+    
     localStorage.setItem("CourseId", res.data.id);
     localStorage.setItem("WeeklyHours", res.data.weeklyHours);
     localStorage.setItem("CourseName", res.data.course_name);
+    // localStorage.setItem("CourseInfos", res.data);
   
   }).catch(err => {
     if(err.message==="Request failed with status code 400"){

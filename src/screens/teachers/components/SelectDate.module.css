@@ -153,5 +153,21 @@ align-items: center;
 border-bottom: 2px solid #01b671;
 }
 
+.SendButtonDisabled{
+
+  background-color: #0076fa;
+  color: aliceblue;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+
+}
+
+.SendButtonDisabled{
+
+  cursor: not-allowed;
+}
+
+
+
 
   

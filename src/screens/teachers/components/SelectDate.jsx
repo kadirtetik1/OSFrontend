@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import TeacherNavbar from './TeacherNavbar'
 import styles from './SelectDate.module.css'
 import {FiX} from "react-icons/fi";
-
+import { createAPIEndpoint, EndPoints } from '../../../api';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import moment from 'moment';
@@ -19,10 +19,12 @@ moment.locale('tr');
   const SelectDate = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [selectable, setSelectable] = useState(true);
+    const [disableButton, setDisableButton] = useState(true);
     const [events, setEvents] = useState([]);
     const [eventTitle, setEventTitle] = useState('');
     const [CourseTitle, setCourseTitle] = useState('Makine Elemanları');
     const [showAlert, setShowAlert] = React.useState(false);
+    const [res, setRes] = useState(null);
 
     const daysOfWeek = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
     let dayIndex = selectedSlot?.start.getDay(); // Haftanın gününü sayı olarak alıyor, Pazar = 0 gibi...
@@ -48,11 +50,27 @@ moment.locale('tr');
     };
 
 
-
     const handleSelectSlot = ({ start, end }) => {
       setSelectedSlot({ start, end });
       
     };
+
+    const courseId = localStorage.getItem("CourseId");      // ders bilgilerini çek, update yaparken tablodaki yerleri doldur.
+
+
+    useEffect(() => {   // res değerine useState ile diışarıdan ulaşabilmek için yazıldı.
+  
+      createAPIEndpoint(EndPoints.course).getById(courseId).then((res) =>{
+     
+        // console.log(res.data); 
+        setRes(res);
+        
+      }).catch(err => console.log(err));
+
+    }, [])
+
+
+    // console.log("Course Data:", res.data);
     
 
   const handleEventAdd = () => { // Ders Saati Ekle Butonu
@@ -71,34 +89,24 @@ moment.locale('tr');
         setEventTitle('');
         
         setAvailableHours(availableHours - takenHours); 
-  
+
+
+        if(availableHours===takenHours){
+          FullOfHours();
+          setSelectable(false);
+          setDisableButton(false);
+
+         }
         }
   
         else{
 
-          if(events.length>0){   // 2 tane ders var ama 3. aşıyorsa seçilebilirliği kapatıyor. DÜZELT !!!
-
-          FullOfHours();
-          setSelectable(false);
-          closeContainer();
-
-
-          }
-
-          else{
             setSelectedSlot(null);
             OutOfHours();
-
-          }
-          
         }
-
     }
 
-
   };
-
-
 
   const handleEventClick = (info) => {
     if (window.confirm("Ders kaydını silmek istediğinizden emin misiniz?")) {
@@ -106,7 +114,7 @@ moment.locale('tr');
       setEvents(updatedEvents);
 
 
-      // events.id.remove();                                                   !!! Şu an çalışmıyor, kontrol et tekrar bak!
+      // events.id.remove();      !!! Şu an çalışmıyor, kontrol et tekrar bak!
     }
   };
 
@@ -129,20 +137,64 @@ moment.locale('tr');
   };
 
 
-  let days= [];
-  let startHours= [];
-  let endHours = [];
-  let eventList= [];
+  let days= "";
+  let startHours= "";
+  let endHours = "";
+  let eventList= "";
 
   for(let i=0; events.length>i; i++){
 
-    days.push(daysOfWeek[events[i].start.getDay()])
-    startHours.push(events[i].start.getHours())
-    endHours.push(events[i].end.getHours())
-    eventList.push(events[i]);
+
+    days= days + daysOfWeek[events[i].start.getDay()] + ",";
+    startHours= startHours + events[i].start.getHours().toString() + ",";
+    endHours= endHours + events[i].end.getHours().toString() + ",";
+
+
+    // days.push(daysOfWeek[events[i].start.getDay()])
+    // startHours.push(events[i].start.getHours().toString())
+    // endHours.push(events[i].end.getHours().toString())
+    
+    // eventList.push(events[i]);
+
+  };
+
+  let data = {
+
+    id:res?.data.id,
+    faculty:res?.data.faculty,
+    department:res?.data.department,
+    course_name:res?.data.course_name,
+    course_code:res?.data.course_code,
+    capacity:res?.data.capacity,
+    semester:res?.data.semester,
+    weeklyHours:res?.data.weeklyHours,
+    
+    days:days,
+    startHours:startHours,
+    endHours:endHours
+
+  };
+
+
+  function updateCourse(){
+
+    createAPIEndpoint(EndPoints.course).put(data).then(put =>{
+      console.log(put);
+  
+      if(put?.status===200){
+        
+       alert("Başarılı!")
+        
+      }
+  
+    }).catch(err => { 
+      console.log(err);
+  
+    });
 
   }
-  
+
+
   return (
 
   
@@ -230,9 +282,13 @@ moment.locale('tr');
         </div>
       )}
 
-      <div className={styles.ButtonContainer}>
-        <div className={styles.SendButton} onClick={() => {console.log(events); console.log(days);console.log(startHours); console.log(endHours); console.log(eventList)}}>Gönder</div>
+      {disableButton ? <div className={styles.ButtonContainer}>
+        <button disabled={disableButton} className={styles.SendButtonDisabled} onClick={() => {console.log(events); console.log(days);console.log(startHours); console.log(endHours); console.log(eventList)}}>Gönder</button>
+      </div> : <div className={styles.ButtonContainer}>
+        <button disabled={disableButton} className={styles.SendButton} onClick={() => {console.log(events); console.log(days);console.log(startHours); console.log(endHours); console.log(data); updateCourse();}}>Gönder</button>
       </div>
+
+      }
 
 
       <ToastContainer/>

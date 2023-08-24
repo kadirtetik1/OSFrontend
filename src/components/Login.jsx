@@ -46,7 +46,7 @@ const Login = (props) => {
     
 
     if(data.academic_role==="student"){
-      createAPIEndpoint(EndPoints.student_login).post({user_name : data.user_name ,password : data.password}).then((res) =>{
+      createAPIEndpoint(EndPoints.student_login, ).post({user_name : data.user_name ,password : data.password}).then((res) =>{
         console.log(res);
         
         if(res.data == "Kullanıcı adı veya şifre hatalı!"){
@@ -57,11 +57,16 @@ const Login = (props) => {
             });
         };
         showToastMessage();
-
-          // event.preventDefault();
           
         }
         else{
+
+          // createAPIEndpoint(EndPoints.student_login).post(res.data.accessToken).then((response) =>{            //  headersta deneme
+
+          //   console.log(response.data.message);
+
+          // }).catch(error => console.log(error));
+
           console.log(res.data);
           navigate("/studentsHome");
           localStorage.setItem("Token", res.data.accessToken);
