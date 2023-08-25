@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TeacherNavbar from './components/TeacherNavbar';
 import CourseCard from '../../components/CourseCard';
 import style from './CreateCourse.module.css';
@@ -8,11 +8,17 @@ import { useNavigate } from 'react-router-dom';
 import {motion} from "framer-motion";
 import { createAPIEndpoint, EndPoints } from '../../api';
 import {ToastContainer, toast } from 'react-toastify';
+import Prompt from './components/Prompt';
+
+
+
 
 const CreateCourse = (props) => {
 
   const[department, setDepartment] = useState("");
   const departmentChange = (event) => {setDepartment(event);} 
+
+  const [selectedCourse, setSelectedCourse] = useState(null);
   
   const[faculty, setFaculty] = useState("");
   const facultyChange = (event) => {setFaculty(event);} 
@@ -35,6 +41,68 @@ const CreateCourse = (props) => {
   const navigate = useNavigate();
 
   let taken_capacity=0;  // Başta 0 gönder, daha sonra db'ye bağlayıp öğrenci kayıt oldukça arttır.
+
+  const selectedCourseId = localStorage.getItem("SelectedCourse");    // Başka bir sayfaya geçtiği anda selectedCourse içerisini boşalt !!
+
+      useEffect(() => {
+
+
+    if(selectedCourseId!=undefined && selectedCourseId!=null){  
+     
+      createAPIEndpoint(EndPoints.course).getById(selectedCourseId).then((res) =>{
+
+        setSelectedCourse(res);
+        
+      }).catch(err => console.log(err));
+
+    }
+
+    }, [])
+
+
+    console.log(selectedCourse?.data)
+
+
+    const dataSelected = {
+
+       department:"",
+       faculty:"",
+       semester:"",
+       course_name:"",
+       course_code:"",
+       capacity:"",
+       weeklyHours:"",
+       days:"",
+       endHours:"",
+       startHours:"",
+    }
+
+    const updatePage = () => {
+      toast.success(`"${selectedCourse.data.course_name}" Dersinizi Güncelleyebilirsiniz!`, {
+          position: toast.POSITION.BOTTOM_RIGHT
+      });
+    };
+
+
+    if(selectedCourse){    // Güncelleme kısmı için yapılan fonksiyonlar.
+
+
+      dataSelected.department=selectedCourse.data.department;
+      dataSelected.faculty=selectedCourse.data.faculty;
+      dataSelected.semester=selectedCourse.data.semester;
+      dataSelected.course_name=selectedCourse.data.course_name;
+      dataSelected.course_code=selectedCourse.data.course_code;
+      dataSelected.capacity=selectedCourse.data.capacity;
+      dataSelected.weeklyHours=selectedCourse.data.weeklyHours;
+      dataSelected.days=selectedCourse.data.days;
+      dataSelected.endHours=selectedCourse.data.endHours;
+      dataSelected.startHours=selectedCourse.data.startHours;
+
+
+      updatePage();  // Bu şekilde çağırdığın için sayfa her renderladığında tekrar basıyor.
+
+    }
+
 
 const data = {
   unvan:"Prof.Dr.",
@@ -78,7 +146,7 @@ const successMessage = () => {
   });
 };
 
-const createCourse = () => {
+const createCourse = () => {    //   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Eğer, SelectedCourse dolu geldiyse güncelleme fnc. çalıştır, yoksa yeni ders oluştur.
 
     
   createAPIEndpoint(EndPoints.course).post(data).then((res) =>{
@@ -88,19 +156,15 @@ const createCourse = () => {
     if(res?.status===200){
       successMessage();
       setTimeout(() =>  successMessage2(), 1500);
-      setTimeout(() => navigate("/select-date"), 3500);   //SelectDate'e gönderirken bilgileri güncellemen gerektiği için props üzerinden componente göndermelisin. Hepsini locale atmak yerine redux kullanman gerekebilir.
+      setTimeout(() => navigate("/select-date"), 3500); 
       
     }
-    
-    // console.log(res); 
-    // console.log(res.data); 
-
     
     localStorage.setItem("CourseId", res.data.id);
     localStorage.setItem("WeeklyHours", res.data.weeklyHours);
     localStorage.setItem("CourseName", res.data.course_name);
-    // localStorage.setItem("CourseInfos", res.data);
-  
+ 
+
   }).catch(err => {
     if(err.message==="Request failed with status code 400"){
 
@@ -116,6 +180,8 @@ const createCourse = () => {
   return (
     <div>
 
+         {/* <Prompt when={true} message='Are you sure you want to leave?'/> */}
+
         <TeacherNavbar/>
      <h1 className={style.pageTitle}></h1>
      
@@ -125,9 +191,6 @@ const createCourse = () => {
 
       <div className={style.infos}>
         <h2 className={style.title}></h2> 
-
-
-{/* CreateInput Başlangıç.. Componentten veri çekemediğin için buraya aktardın. Redux'ı dahil edersen component olarak çağırarak yaz.. */}
   
 
   <div>
@@ -149,22 +212,22 @@ const createCourse = () => {
 
   <div className={styles.labelInput}>
   <label className={styles.formLabel} htmlFor="formInput" >Bölüm:</label>
-  <input className={styles.formInput} type="text" onChange={(e) => departmentChange(e.target.value)}/>
+  <input className={styles.formInput} defaultValue={dataSelected.department} type="text" onChange={(e) => departmentChange(e.target.value)}/>
   </div>
 
   <div className={styles.labelInput}>
   <label className={styles.formLabel} htmlFor="formInput" >Ders Adı:</label>
-  <input className={styles.formInput} type="text" onChange={(e) => courseNameChange(e.target.value)}/>
+  <input className={styles.formInput} defaultValue={dataSelected.course_name} type="text" onChange={(e) => courseNameChange(e.target.value)}/>
   </div>
 
   <div className={styles.labelInput}>
   <label className={styles.formLabel} htmlFor="formInput" >Ders Kodu:</label>
-  <input className={styles.formInput} type="text" onChange={(e) => courseCodeChange(e.target.value)}/>
+  <input className={styles.formInput} defaultValue={dataSelected.course_code} type="text" onChange={(e) => courseCodeChange(e.target.value)}/>
   </div>
 
   <div className={styles.labelInput}>
   <label className={styles.formLabel} htmlFor="formInput" >Kontenjan:</label>
-  <input className={styles.formInput} type="number" onChange={(e) => capacityChange(e.target.value)}/>
+  <input className={styles.formInput} defaultValue={dataSelected.capacity} type="number" onChange={(e) => capacityChange(e.target.value)}/>
   </div>
 
   <div className={styles.labelInput}>
@@ -197,10 +260,6 @@ const createCourse = () => {
 
   </div>
 
-  {/* <div className={styles.labelInput}>
-  <label className={styles.formLabel} htmlFor="formInput" >Programdan Gün Seçiniz</label>
-  <input className={styles.formInput} type="text" />
-  </div> */}
 
   <div className={styles.buttonContainer}>
   <div className={styles.button} onClick={ () => {createCourse(); console.log(data); }}>Kaydet Ve Gün Belirle</div>

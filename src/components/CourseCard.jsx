@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import styles from './CourseCard.module.css'
 import {motion} from "framer-motion";
 import TeacherInfo from './TeacherInfo';
+import {useNavigate } from 'react-router-dom'
 
 
 const CourseCard = (props) => {
 
   const [teacherInfo, setTeacherInfo] = useState(false);
+  const navigate = useNavigate();
 
   function toggleTeacherInfo (){
     setTeacherInfo(!teacherInfo);
@@ -45,7 +47,7 @@ const CourseCard = (props) => {
 
 </div>
 
-<motion.div className={styles.addButton} whileHover={{scale:1.05}}>{props.button}</motion.div>
+<motion.div className={styles.addButton} whileHover={{scale:1.05}}  onClick={ () => {navigate(`/${props.navigate}`); localStorage.setItem("SelectedCourse", props.selectedCourseId)}}  >{props.button}</motion.div>
         
 </div>
 

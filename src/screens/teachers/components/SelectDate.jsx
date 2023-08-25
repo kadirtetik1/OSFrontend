@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import TeacherNavbar from './TeacherNavbar'
 import styles from './SelectDate.module.css'
+import {useNavigate } from 'react-router-dom'
 import {FiX} from "react-icons/fi";
 import { createAPIEndpoint, EndPoints } from '../../../api';
 import FullCalendar from '@fullcalendar/react';
@@ -25,6 +26,7 @@ moment.locale('tr');
     const [CourseTitle, setCourseTitle] = useState('Makine Elemanları');
     const [showAlert, setShowAlert] = React.useState(false);
     const [res, setRes] = useState(null);
+    const navigate = useNavigate();
 
     const daysOfWeek = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
     let dayIndex = selectedSlot?.start.getDay(); // Haftanın gününü sayı olarak alıyor, Pazar = 0 gibi...
@@ -45,6 +47,12 @@ moment.locale('tr');
 
     const OutOfHours = () => {
       toast.error(`Toplam Ders Saatinden Fazla Seçim Yaptınız.`,{
+      position: toast.POSITION.BOTTOM_RIGHT
+      });
+    };
+
+    const successUpdate = () => {
+      toast.success(`Ders Programı Başarıyla Oluşturuldu.`,{
       position: toast.POSITION.BOTTOM_RIGHT
       });
     };
@@ -183,7 +191,16 @@ moment.locale('tr');
   
       if(put?.status===200){
         
-       alert("Başarılı!")
+      //  alert("Başarılı!")
+
+      successUpdate();
+
+      setTimeout(() => navigate("/teachersHome"), 2000);
+
+      localStorage.removeItem("CourseId");
+      localStorage.removeItem("CourseName");
+      localStorage.removeItem("WeeklyHours");
+      localStorage.removeItem("WeeklyHours");
         
       }
   

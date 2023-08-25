@@ -22,11 +22,9 @@ const StudentsHome = () => {
       
       <StuNavbar/>
       <StuHero/>
+
       <div style={{display:"flex"}}>
-
 <div className={styles.swiperContainerOuter}>
-
-
 <div className={styles.swiperContainer}>
 
       <Swiper 
