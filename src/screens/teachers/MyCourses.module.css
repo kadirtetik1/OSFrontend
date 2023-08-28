@@ -14,3 +14,19 @@
     /* background-color: rgb(240, 248, 255); */
     border-radius: 30px;
 }
+
+.cardContainer{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    padding-bottom: 3rem;
+   
+}
+
+.cardInfos{
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: row;
+    
+}

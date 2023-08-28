@@ -21,12 +21,11 @@ const MyCourses = () => {
   const [data, setData] = useState(null);
   
 
-
   useEffect(() => {
 
   createAPIEndpoint(EndPoints.course_byteacher).getByIdTeacher(teacherID).then(res =>{
   
-    setData(res);
+  setData(res);
 
 
 
@@ -35,7 +34,15 @@ const MyCourses = () => {
 
   });
 
-}, [])
+}, []);
+
+
+
+
+// console.log(data.data)
+// console.log(dataDays);
+
+
 
 let unvan = "Prof.Dr"
 let name = localStorage.getItem("fullname")
@@ -44,38 +51,84 @@ let courseImage = "https://web.harran.edu.tr/assets/uploads/sites/57/slides/ef38
 let studentCount = 0;
 
 
-
-
 const Courses = [];
+// const days = ["Pazartesi", "Salı", "Çarşamba"];
+// const startTime = ["10", "14", "15"];
+// const endTime = ["13", "17", "18"];
+const date =[]; {/* önce gün stringini "," ile split et, diziye at, boyutunu çek, for içinde çağır. */}
+
+
+let i = dataDays.length;
+
+for(let k=0; dataDays[i].length<k; k++){
+  date.push(
+
+    )
+}
+
+
+
+let dataDays = [];
+let startTime = [];
+let endTime = [];
 
 for(let i=0; data?.data.length>i ; i++){
 
+dataDays[i] = data.data[i].days?.split(',');
+startTime[i] = data.data[i].startHours?.split(',');
+endTime[i] = data.data[i].endHours?.split(',');
 
-  Courses.push(<SwiperSlide style={{paddingBottom:"30px"}}>
+
+  Courses.push(
+  
+  <SwiperSlide style={{paddingBottom:"30px"}}>
+
+  <div className={style.cardContainer}>
 
   <CourseCard unvan={unvan} name={name} teacherImage={teacherImage}
   courseImage={courseImage} button="Dersi Güncelle" navigate="create-course" selectedCourseId={data.data[i].id}
   departmentName={data.data[i].department} period={data.data[i].semester} courseTitle={data.data[i].course_name} courseCode={data.data[i].course_code} takenKont={studentCount} openKont={data.data[i].capacity}/>
-  
-  </SwiperSlide>);
 
+   <div className={style.cardInfos}>
+
+        <div className={style.dateInfos}>
+        {date}
+
+
+
+        </div>
+
+  </div> 
+
+  </div>
+  
+  </SwiperSlide>
+  
+  );
   
 }
 
+console.log(dataDays);
+console.log(startTime);
+console.log(endTime);
 
+
+console.log(data.data);
+
+// for(let i=0; days.length>i ; i++){
+
+//   date.push(
+//       <div>{days[i]} {startTime[i]}:00 - {endTime[i]}:00</div>
+//   )
+
+// }
 
   return (
     <div>
       <TeacherNavbar/>
       
-
       <div className={style.container}>
-
-
         <div className={style.containerSlider}>
-
-        
-
 
       <div className={styles.swiperContainerOuter}>
 <div className={styles.swiperContainer}>
@@ -92,6 +145,8 @@ for(let i=0; data?.data.length>i ; i++){
     >
 
  <div>{Courses}</div>  {/* Swiper içerisinde dersler dizisini çağırıyorsun.  */}
+
+
         
 </Swiper>
 

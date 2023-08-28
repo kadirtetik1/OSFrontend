@@ -4,21 +4,22 @@ import CourseCard from '../../components/CourseCard';
 import style from './CreateCourse.module.css';
 import CreateInput from './components/CreateInput';
 import styles from './components/CreateInput.module.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {motion} from "framer-motion";
 import { createAPIEndpoint, EndPoints } from '../../api';
 import {ToastContainer, toast } from 'react-toastify';
-import Prompt from './components/Prompt';
 
 
 
 
 const CreateCourse = (props) => {
 
+
   const[department, setDepartment] = useState("");
   const departmentChange = (event) => {setDepartment(event);} 
 
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const location = useLocation();
   
   const[faculty, setFaculty] = useState("");
   const facultyChange = (event) => {setFaculty(event);} 
@@ -39,10 +40,11 @@ const CreateCourse = (props) => {
   const semesterChange = (event) => {setSemester(event);}
 
   const navigate = useNavigate();
+  
 
   let taken_capacity=0;  // Başta 0 gönder, daha sonra db'ye bağlayıp öğrenci kayıt oldukça arttır.
 
-  const selectedCourseId = localStorage.getItem("SelectedCourse");    // Başka bir sayfaya geçtiği anda selectedCourse içerisini boşalt !!
+  const selectedCourseId = localStorage.getItem("SelectedCourse"); 
 
       useEffect(() => {
 
@@ -57,10 +59,24 @@ const CreateCourse = (props) => {
 
     }
 
-    }, [])
+    }, []);
 
+
+    useEffect(() => {
+      // Sayfa değiştiğinde localStorage'daki veriyi silmek
+      window.localStorage.removeItem('SelectedCourse');
+    }, [navigate]);
 
     console.log(selectedCourse?.data)
+    
+
+
+    useEffect(() => {
+      if (selectedCourse) {
+        updatePage(); 
+        
+      }
+    }, [selectedCourse]);
 
 
     const dataSelected = {
@@ -83,7 +99,6 @@ const CreateCourse = (props) => {
       });
     };
 
-
     if(selectedCourse){    // Güncelleme kısmı için yapılan fonksiyonlar.
 
 
@@ -97,9 +112,6 @@ const CreateCourse = (props) => {
       dataSelected.days=selectedCourse.data.days;
       dataSelected.endHours=selectedCourse.data.endHours;
       dataSelected.startHours=selectedCourse.data.startHours;
-
-
-      updatePage();  // Bu şekilde çağırdığın için sayfa her renderladığında tekrar basıyor.
 
     }
 
@@ -177,10 +189,11 @@ const createCourse = () => {    //   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Eğer, Sele
 
 }
 
+
+
+
   return (
     <div>
-
-         {/* <Prompt when={true} message='Are you sure you want to leave?'/> */}
 
         <TeacherNavbar/>
      <h1 className={style.pageTitle}></h1>
