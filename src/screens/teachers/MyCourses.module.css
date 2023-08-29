@@ -1,9 +1,8 @@
 
 
 .container{
-
     background-color: rgba(0, 0, 0, 0.001);
-    height: 89vh;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,4 +28,12 @@
     display: flex;
     flex-direction: row;
     
+}
+
+.container1{
+    width: 100%;
+    height: 89vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

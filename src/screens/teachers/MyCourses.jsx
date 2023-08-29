@@ -15,7 +15,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 
-const MyCourses = () => {
+const MyCourses = () => {  // Eksiklerin var DÜZELT!! Günleri istediğin gibi yazdıramadın.
 
   const teacherID = localStorage.getItem("Id");
   const [data, setData] = useState(null);
@@ -38,12 +38,6 @@ const MyCourses = () => {
 
 
 
-
-// console.log(data.data)
-// console.log(dataDays);
-
-
-
 let unvan = "Prof.Dr"
 let name = localStorage.getItem("fullname")
 let teacherImage = "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg"
@@ -58,25 +52,25 @@ const Courses = [];
 const date =[]; {/* önce gün stringini "," ile split et, diziye at, boyutunu çek, for içinde çağır. */}
 
 
-let i = dataDays.length;
-
-for(let k=0; dataDays[i].length<k; k++){
-  date.push(
-
-    )
-}
-
-
 
 let dataDays = [];
 let startTime = [];
 let endTime = [];
 
-for(let i=0; data?.data.length>i ; i++){
 
-dataDays[i] = data.data[i].days?.split(',');
-startTime[i] = data.data[i].startHours?.split(',');
-endTime[i] = data.data[i].endHours?.split(',');
+// let i = dataDays.length;
+
+// for(let k=0; dataDays[i].length<k; k++){
+//   date.push(
+
+//     )
+// }
+
+for(let i=0; data?.data.length>i ; i++){ 
+
+dataDays[i] = data?.data[i].days?.split(',');
+startTime[i] = data?.data[i].startHours?.split(',');
+endTime[i] = data?.data[i].endHours?.split(',');
 
 
   Courses.push(
@@ -93,7 +87,6 @@ endTime[i] = data.data[i].endHours?.split(',');
 
         <div className={style.dateInfos}>
         {date}
-
 
 
         </div>
@@ -113,8 +106,6 @@ console.log(startTime);
 console.log(endTime);
 
 
-console.log(data.data);
-
 // for(let i=0; days.length>i ; i++){
 
 //   date.push(
@@ -127,6 +118,8 @@ console.log(data.data);
     <div>
       <TeacherNavbar/>
       
+      <div className={style.container1}>
+        
       <div className={style.container}>
         <div className={style.containerSlider}>
 
@@ -137,7 +130,7 @@ console.log(data.data);
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={10}
-      slidesPerView={4}
+      slidesPerView={3}
       navigation
       pagination={{ clickable: true }}
       // scrollbar={{ draggable: true }}
@@ -156,6 +149,8 @@ console.log(data.data);
 
 </div>
 
+
+</div>
 
 </div>
 

@@ -1,0 +1,64 @@
+
+
+.facultyTitle{
+    background-color: #01945c;
+    color: aliceblue;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    margin: 1rem;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: larger;
+    animation: animate-in 1.5s ease-out forwards; 
+}
+
+.marginTop{
+    width: 100%;
+    height: 3rem;
+}
+
+.courseContainer{
+    
+}
+
+/* .sliderBackGround{
+    background-color: rgba(0, 0, 0, 0.34);
+    height: fit-content;
+    width: 55vw;
+    border-radius: 30px;
+    padding-top: 1rem;
+}
+
+.sliderBackGroundContainer{
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+
+.titleLine{
+    height: 5px;
+    border-radius: 30px;
+    width: 30vw;
+    background-color: #01b671;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    /* animation: animate-in 1.5s ease-out forwards;  */
+}
+
+@keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateX(5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }

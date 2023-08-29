@@ -6,12 +6,12 @@ body{
 
 .swiperContainer{
 
-   width: 1200px;
+   width: 900px;
    
 }
 
 .swiperContainerOuter{
-    margin: 20px;
+    /* margin: 20px; */
     width: 97%;
     display: flex;
     justify-content: center;
