@@ -7,6 +7,7 @@ export const EndPoints = {   //controller names
     student: "student",
     teacher: "teacher",
     course:"course",
+    course_teacher:"course/GetWithTeacherInfo",
     course_byteacher: "course/getByTeacherId?TeacherId=",
     student_login : "student/userControl",
     teacher_login : "teacher/userControl",

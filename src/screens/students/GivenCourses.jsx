@@ -20,18 +20,15 @@ const GivenCourses = () => {
   const fenedebiyat =[];
 
   let unvan = "Prof.Dr"
-  let name = localStorage.getItem("fullname")
   let teacherImage = "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg"
-  let courseImage = "https://web.harran.edu.tr/assets/uploads/sites/57/slides/ef38464dd6a24fa7bb675710d466fb31.jpg"
+  let courseImage = "";
   let studentCount = 0;
 
 
   useEffect(() => {
 
-  createAPIEndpoint(EndPoints.course).get().then((res) =>{
-    // console.log(res);
+  createAPIEndpoint(EndPoints.course_teacher).get().then((res) =>{
     setData(res);
-
   
   }).catch(err => console.log(err));
 
@@ -39,28 +36,14 @@ const GivenCourses = () => {
 
 console.log(data?.data);
 
-// let name = localStorage.getItem("fullname")    => dersten teacher id'yi çek ve her ders için sorgu gönderip isim soyisimi ver.
-
 
 for(let i =0; data?.data.length>i;i++){
 
-  let teacherId= "";
 
-  if(data.data[i].faculty==faculties[0]){
+  if(data.data[i].facultyName==faculties[0]){
 
-    teacherId = data.data[i].teacherId;
+    courseImage = "https://web.harran.edu.tr/assets/uploads/sites/57/slides/ef38464dd6a24fa7bb675710d466fb31.jpg"
 
-    
-      // createAPIEndpoint(EndPoints.teacher).getById(teacherID).then(res =>{
-   
-      // console.log(res)
-   
-      // }).catch(err => { 
-      //   console.log(err);
-   
-      // });
-   
-    
     
     muhendislik.push(
   
@@ -68,9 +51,9 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={name} teacherImage={teacherImage}
-      courseImage={courseImage} button="Derse Kayıt Ol" navigate="create-course" selectedCourseId={data.data[i].id}
-      departmentName={data.data[i].department} period={data.data[i].semester} courseTitle={data.data[i].course_name} courseCode={data.data[i].course_code} takenKont={studentCount} openKont={data.data[i].capacity}/>
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
+      departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
       </div>
       
@@ -80,10 +63,9 @@ for(let i =0; data?.data.length>i;i++){
     
   }
 
-  else if(data.data[i].faculty==faculties[1]){
+  else if(data.data[i].facultyName==faculties[1]){
 
-    teacherId = data.data[i].teacherId;
-   
+    courseImage = "https://savun.av.tr/wp-content/uploads/2021/12/savun-hukuk-arka-plan.jpg"
 
     hukuk.push(
   
@@ -91,9 +73,9 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={name} teacherImage={teacherImage}
-      courseImage={courseImage} button="Derse Kayıt Ol" navigate="create-course" selectedCourseId={data.data[i].id}
-      departmentName={data.data[i].department} period={data.data[i].semester} courseTitle={data.data[i].course_name} courseCode={data.data[i].course_code} takenKont={studentCount} openKont={data.data[i].capacity}/>
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
+      departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
       </div>
       
@@ -103,9 +85,9 @@ for(let i =0; data?.data.length>i;i++){
     
   }
 
-  else if(data.data[i].faculty==faculties[2]){
+  else if(data.data[i].facultyName==faculties[2]){
 
-    teacherId = data.data[i].teacherId;
+    courseImage="https://tinaztepe.edu.tr/uploads/bolumler/cerrahi-tip-bilimleri.jpg"
    
 
     saglik.push(
@@ -114,9 +96,9 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={name} teacherImage={teacherImage}
-      courseImage={courseImage} button="Derse Kayıt Ol" navigate="create-course" selectedCourseId={data.data[i].id}
-      departmentName={data.data[i].department} period={data.data[i].semester} courseTitle={data.data[i].course_name} courseCode={data.data[i].course_code} takenKont={studentCount} openKont={data.data[i].capacity}/>
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
+      departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
       </div>
       
@@ -126,9 +108,9 @@ for(let i =0; data?.data.length>i;i++){
     
   }
 
-  else if(data.data[i].faculty==faculties[3]){
+  else if(data.data[i].facultyName==faculties[3]){
 
-    teacherId = data.data[i].teacherId;
+    courseImage="https://www.adrespatent.com.tr/wp-content/uploads/2022/09/bir-isletme-nasil-kurulur-isinizi-baslatmak-icin-10-adim.jpg"
    
 
     isletme.push(
@@ -137,9 +119,9 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={name} teacherImage={teacherImage}
-      courseImage={courseImage} button="Derse Kayıt Ol" navigate="create-course" selectedCourseId={data.data[i].id}
-      departmentName={data.data[i].department} period={data.data[i].semester} courseTitle={data.data[i].course_name} courseCode={data.data[i].course_code} takenKont={studentCount} openKont={data.data[i].capacity}/>
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
+      departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
       </div>
       
@@ -149,32 +131,27 @@ for(let i =0; data?.data.length>i;i++){
     
   }
 
-  else if(data.data[i].faculty==faculties[4]){
+  else if(data.data[i].facultyName==faculties[4]){
+    
+    courseImage="https://cdn.oggito.com/images/full/2017/6/edebiyatdenensey2.jpg"
 
-    teacherId = data.data[i].teacherId;
-    
-    
     fenedebiyat.push(
   
       <SwiperSlide style={{paddingBottom:"30px"}}>
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={name} teacherImage={teacherImage}
-      courseImage={courseImage} button="Derse Kayıt Ol" navigate="create-course" selectedCourseId={data.data[i].id}
-      departmentName={data.data[i].department} period={data.data[i].semester} courseTitle={data.data[i].course_name} courseCode={data.data[i].course_code} takenKont={studentCount} openKont={data.data[i].capacity}/>
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
+      departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
       </div>
       
       </SwiperSlide>
       
       );
-    
   }
-  
-  
 }
-
 
   return (
     <div>
@@ -210,8 +187,6 @@ for(let i =0; data?.data.length>i;i++){
 
 </div>
         
-
-   
 
         <div className={styles.facultyTitle}>{faculties[1]} Fakültesi</div>
         <div className={styles.titleLine}></div>
@@ -300,7 +275,6 @@ for(let i =0; data?.data.length>i;i++){
 </div>
 </div>
         
-    
 
         <div className={styles.facultyTitle}>{faculties[4]} Fakültesi</div>
         <div className={styles.titleLine}></div>

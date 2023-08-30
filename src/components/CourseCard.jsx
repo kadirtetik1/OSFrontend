@@ -23,7 +23,7 @@ const CourseCard = (props) => {
     <div className={styles.cardContainer}>
 
 <div className={styles.teacherNameImage}>
-<div className={styles.teacherName}><h4> {props.unvan} {props.name} </h4></div>
+<div className={styles.teacherName}><h4> {props.unvan} {props.name} {props.lastname} </h4></div>
 <div className={styles.teacherImage} onClick={toggleTeacherInfo}><img src ={props.teacherImage} style={{height:"100%", width:"100%", borderRadius:"50%"}} /></div>
 </div>
 

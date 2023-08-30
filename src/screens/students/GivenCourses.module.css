@@ -1,7 +1,7 @@
 
 
 .facultyTitle{
-    background-color: #01945c;
+    background-color: #d30f1c;
     color: aliceblue;
     width: fit-content;
     height: fit-content;
@@ -13,7 +13,7 @@
     border-radius: 30px;
     font-weight: 500;
     font-size: larger;
-    animation: animate-in 1.5s ease-out forwards; 
+    /* animation: animate-in2 1.5s ease-out forwards;  */
 }
 
 .marginTop{
@@ -46,10 +46,14 @@
     height: 5px;
     border-radius: 30px;
     width: 30vw;
-    background-color: #01b671;
+    background-color: #d30f1c;
     margin-left: 1rem;
     margin-bottom: 1rem;
     /* animation: animate-in 1.5s ease-out forwards;  */
+}
+
+.background{
+    /* background-color: #141414; */
 }
 
 @keyframes animate-in {
@@ -62,3 +66,15 @@
       transform: translateX(0);
     }
   }
+
+  @keyframes animate-in2 {
+    from {
+      opacity: 0;
+      transform: translateX(-2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
