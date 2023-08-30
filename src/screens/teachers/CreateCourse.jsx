@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react'
 import TeacherNavbar from './components/TeacherNavbar';
 import CourseCard from '../../components/CourseCard';
 import style from './CreateCourse.module.css';
-import CreateInput from './components/CreateInput';
 import styles from './components/CreateInput.module.css'
 import { useNavigate, useLocation } from 'react-router-dom';
-import {motion} from "framer-motion";
 import { createAPIEndpoint, EndPoints } from '../../api';
 import {ToastContainer, toast } from 'react-toastify';
 

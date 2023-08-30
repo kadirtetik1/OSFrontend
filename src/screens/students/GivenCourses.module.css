@@ -45,9 +45,9 @@
 .titleLine{
     height: 5px;
     border-radius: 30px;
-    width: 30vw;
+    width: 98%;
     background-color: #d30f1c;
-    margin-left: 1rem;
+    margin: 0rem 1rem;
     margin-bottom: 1rem;
     /* animation: animate-in 1.5s ease-out forwards;  */
 }
