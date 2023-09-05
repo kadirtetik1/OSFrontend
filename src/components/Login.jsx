@@ -75,6 +75,7 @@ const Login = (props) => {
           localStorage.setItem("username", decode.username); 
           localStorage.setItem("fullname", decode.fullname); 
           localStorage.setItem("role", decode.role); 
+          localStorage.setItem("department", decode.department); 
  
           // createAPIEndpoint(EndPoints.base, {                 // !!! headersta tokenı gönderip doğru olup olmadığını kontrol et, içersinden teacher id'yi çek.
           //   Headers:{

@@ -1,0 +1,27 @@
+
+
+
+
+.courseHoursTitle{
+    border-bottom: 2px solid #2671d4;
+}
+
+.Faculty{
+    background-color: #2671d4;
+    color:#eff6ff ;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    /* border: 1px solid #01b671 ; */
+    
+  }
+
+  .FacultyEmpty{
+
+  }
+
+.titleEmpty{
+    border-bottom: 2px solid #d42626;
+}
+
+ 

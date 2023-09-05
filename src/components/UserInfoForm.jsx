@@ -86,8 +86,6 @@ const errorEmptyAreas = () => {
   const role = localStorage.getItem("role"); 
 
 
- 
-
   useEffect(() => {
 
     if(role==="student"){
@@ -252,6 +250,7 @@ else if(role==="teacher"){
 
   localStorage.setItem("username", user_name); // Değişiklik olduğunda sağ taraftaki bilgileri de güncellesin diye yazıldı..
   localStorage.setItem("fullname", fullname);
+  localStorage.setItem("department", department);
   
 
   let inputClassName=styles.formInput;

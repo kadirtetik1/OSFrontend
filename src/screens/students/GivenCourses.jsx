@@ -7,12 +7,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import style from '../teachers/MyCourses.module.css'
 import styles1 from './StudentsHome.module.css'
+import GridLoader from 'react-spinners/GridLoader'
 
 const GivenCourses = () => {
 
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const faculties = ["Mühendislik", "Hukuk", "Sağlık", "İşletme", "Fen-Edebiyat"];
-  const [data, setData] = useState(null);
   const muhendislik =[];
   const hukuk =[];
   const saglik =[];
@@ -23,6 +25,17 @@ const GivenCourses = () => {
   let teacherImage = "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg"
   let courseImage = "";
   let studentCount = 0;
+
+
+  useEffect(() => {
+
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false)
+    },1500)
+
+  },[])
 
 
   useEffect(() => {
@@ -154,10 +167,19 @@ for(let i =0; data?.data.length>i;i++){
 }
 
   return (
-    <div>
+    <div  className={styles.background} >
+       
         <StuNavbar/>
 
-          <div className={styles.marginTop}></div>
+        {
+          loading ?
+          <div className={styles.spinnerContainer}><GridLoader color="#0076fa" /></div>
+          
+          :
+
+          <div>
+        
+        <div className={styles.marginTop}></div>
         <div className={styles.facultyTitle}>{faculties[0]} Fakültesi</div>
         <div className={styles.titleLine}></div>
 
@@ -247,17 +269,14 @@ for(let i =0; data?.data.length>i;i++){
 </div>
 </div>
         
-     
 
-     
-
-        <div className={styles.facultyTitle}>{faculties[3]} Fakültesi</div>
-        <div className={styles.titleLine}></div>
-        
-        <div className={style.container}>
-        <div className={style.containerSlider}>
-      <div className={styles1.swiperContainerOuter}>
-      <div className={styles1.swiperContainer}>
+   <div className={styles.facultyTitle}>{faculties[3]} Fakültesi</div>
+   <div className={styles.titleLine}></div>
+   
+   <div className={style.container}>
+   <div className={style.containerSlider}>
+   <div className={styles1.swiperContainerOuter}>
+   <div className={styles1.swiperContainer}>
 
       <Swiper 
       modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -299,10 +318,15 @@ for(let i =0; data?.data.length>i;i++){
 </div>
 </div>
 </div>
-        
-      
+
+</div>
+       }
       
     </div>
+
+    
+
+    
   )
 }
 
