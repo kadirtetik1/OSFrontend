@@ -1,0 +1,143 @@
+
+
+.container{
+    /* background-color: aqua;
+    height: 100vh;
+    width: 100%; */
+}
+
+.container2{
+    height: 110vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.courseTable{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    height: 100%;
+    width: 90vw;
+    /* border: 1px solid black; */
+    /* border-radius: 5px; */
+}
+
+.courseContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 66%;
+    height: 100%;
+    /* border-right: 1px solid black; */
+}
+
+.courseBasket{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 34%;
+    height: 100%;
+    /* background-color: rgb(25, 106, 182); */
+    border: 1px solid black;
+    border-radius: 5px;
+
+}
+
+.courseInfos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 35%;
+    background-color: beige;
+    /* background-color: rgb(182, 25, 77); */
+    /* border-bottom: 1px solid black; */
+
+}
+
+.selectableCourses{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 65%;
+    /* background-color: rgb(255, 221, 0); */
+    /* border-top: 1px solid black; */
+}
+
+.facultyTitle{
+    background-color: #d30f1c;
+    color: aliceblue;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: larger;
+}
+
+.basketTitle{
+
+    background-color: #01b671;
+    color: aliceblue;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: larger;
+
+}
+
+.title{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.basketContainer{
+    width: 100%;
+    height: 90%;
+    background-color: #01b671;
+
+}
+
+.badgeBasket{
+    background-color: #d30f1c;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
+.basketIconBadge{
+    display: flex;
+    width: 8%;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+

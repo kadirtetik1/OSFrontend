@@ -16,12 +16,16 @@
     
   }
 
-  .FacultyEmpty{
-
-  }
-
 .titleEmpty{
     border-bottom: 2px solid #d42626;
+}
+
+.container{
+  height: 89vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(270deg, #7b7b7b 0%, #f0f0f0 52%, #7b7b7b 90%);
 }
 
  

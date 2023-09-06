@@ -1,35 +1,17 @@
 import React, { useEffect, useState } from 'react'
+import styles from './AddCourse.module.css'
+import style from './StudentsHome.module.css'
 import StuNavbar from './components/StuNavbar';
-import SweetAlert from 'react-bootstrap-sweetalert';
-import styles from './AddDrop.module.css'
-import { createAPIEndpoint, EndPoints } from '../../api';
 import CourseCard from '../../components/CourseCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import style from '../teachers/MyCourses.module.css'
-import styles1 from './StudentsHome.module.css'
+import { createAPIEndpoint, EndPoints } from '../../api';
+import { BsBasket } from 'react-icons/bs';
 
-const AddDrop = () => {
-
-  const [showAlert, setShowAlert] = React.useState(false);
-  const [faculty, setFaculty] = useState("");
-  const [facultyTitle, setFacultyTitle] = useState("");
-  const [facultyClassName, setFacultyClassName] = useState("");
-  const [titleClassName, setTitleClassName] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(null);
+const AddCourse = () => {
 
   let faculty1 = localStorage.getItem("department");// öğrencinin fakültesi
-
-
-  const facultyTitle1 = "Kayıtlı Olduğunuz Fakülte:";
-  const facultyTitle2 = 'Bu İşlemi Yapabilmek İçin "Profil Bilgileri" Bölümünden Fakültenizi Belirlemelisiniz!';
-
-  let unvan = "Prof.Dr"
-  let teacherImage = "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg"
-  let courseImage = "";
-  let studentCount = 0;
-
+  const [data, setData] = useState(null);
   const faculties = ["Mühendislik", "Hukuk", "Sağlık", "İşletme", "Fen-Edebiyat"];
   const muhendislik =[];
   const hukuk =[];
@@ -38,43 +20,10 @@ const AddDrop = () => {
   const fenedebiyat =[];
   let showCourses = [];
 
-  useEffect(() => {
-
-    setLoading(true);
-
-    setTimeout(() => {   // Dersleri göstereceğin zaman kullan..
-      setLoading(false)
-    },1500)
-
-  },[])
-
-   useEffect(() => {
-     setShowAlert(true);  
-   }, []);
-
-    const handleCloseAlert = () => {
-      setShowAlert(false);  
-    };
-
-
-  useEffect(()=>{
-
-   if(faculty1=="empty" || faculty1=="null" || faculty1==null || faculty1==undefined ){
-     setFacultyTitle(facultyTitle2);
-     setFaculty("");
-     setFacultyClassName(styles.FacultyEmpty);
-     setTitleClassName(styles.titleEmpty);
-      }
-  
-     else{
-      setFacultyTitle(facultyTitle1);
-      setFaculty(faculty1);
-      setFacultyClassName(styles.Faculty);
-      setTitleClassName(styles.courseHoursTitle);
-     }
-    
-},[])
-
+  let unvan = "Prof.Dr"
+  let teacherImage = "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg"
+  let courseImage = "";
+  let studentCount = 0;
 
 useEffect(() => {
 
@@ -231,29 +180,29 @@ for(let i=0; 4>=i; i++){
 
 }
 
-
   return (
-    <div>
+    <div className={styles.container}>
         <StuNavbar/>
-        
-        <div>
-      <SweetAlert
-        show={showAlert}
-        title="Bu Sayfadan Ders Seçimini İşlemlerinizi Yapabilirsiniz."
-        onConfirm={handleCloseAlert}
-        confirmBtnText="Tamam"
-      >
-        <p><span className={titleClassName}>{facultyTitle}</span> <span className={facultyClassName}>{faculty}</span></p>
-      </SweetAlert>
 
-      <div className={styles.container}>
+        <div className={styles.container2}>
 
-      <div className={style.container}>
-        <div className={style.containerSlider}>
-      <div className={styles1.swiperContainerOuter}>
-      <div className={styles1.swiperContainer}>
-        
-      <Swiper 
+        <div className={styles.courseTable}>
+
+          <div className={styles.courseContainer}>
+
+            <div className={styles.courseInfos}>
+
+            </div>
+
+            <div className={styles.selectableCourses}>
+
+            <div style={{display:"flex"}}>
+<div className={style.swiperContainerOuter}>
+<div className={style.swiperContainer}>
+
+<div className={styles.facultyTitle}>Fakültenizde Açılan Diğer Dersler</div>
+
+  <Swiper 
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={10}
       slidesPerView={3}
@@ -265,16 +214,44 @@ for(let i=0; 4>=i; i++){
 </Swiper>
 
 </div>
-</div>
-</div>
+
 </div>
 
       </div>
 
-    </div>
+            </div>
+
+          </div>
+
+          <div className={styles.courseBasket}>
+
+            <div className={styles.title}>
+            <div className={styles.basketTitle}>Ders Sepetiniz</div>
+
+            <div className={styles.basketIconBadge}>
+
+            <div className={styles.badgeBasket}>3</div>
+            <BsBasket color="black" size={20} />
+
+            </div>
+            
+            </div>
+
+            <div className={styles.basketContainer}>
+
+            </div>
+          
+            
+          </div>
+
+        </div>
+
+        </div>
+
+        
       
     </div>
   )
 }
 
-export default AddDrop
+export default AddCourse

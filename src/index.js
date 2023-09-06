@@ -17,6 +17,7 @@ import TakenCourses from './screens/students/TakenCourses';
 import GivenCourses from './screens/students/GivenCourses';
 import SelectDate from './screens/teachers/components/SelectDate';
 import UserInfosTeacher from './screens/teachers/UserScreenTeacher';
+import AddCourse from './screens/students/AddCourse';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -38,6 +39,7 @@ root.render(
           <Route path="create-course" element={<CreateCourse />} />
           <Route path="my-courses" element={<MyCourses />} />
           <Route path="select-date" element={<SelectDate />} />
+          <Route path="add-course" element={<AddCourse />} />
         </Route>
       
         <Route index element={<App />} />

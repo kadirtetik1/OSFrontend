@@ -118,6 +118,27 @@
     font-weight: 500;
 }
 
+.addButtonDisabled{
+
+    background-color:rgb(17, 112, 200) ;
+    width: 85%;
+    height: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 15px;
+    color: aliceblue;
+    font-size: 15px;
+    font-weight: 500;
+
+}
+
+.addButtonDisabled:hover{
+    cursor: not-allowed;
+}
+
 .addButton:hover{
     cursor: pointer;
     

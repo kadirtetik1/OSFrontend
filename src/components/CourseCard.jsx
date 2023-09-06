@@ -46,9 +46,11 @@ const CourseCard = (props) => {
   <div className={styles.kontenjan}> <div className={styles.takenKont}>{props.takenKont}</div>/<div className={styles.openKont}>{props.openKont}</div> </div>
 
 </div>
-
-<motion.div className={styles.addButton} whileHover={{scale:1.05}}  onClick={ () => {navigate(`/${props.navigate}`); localStorage.setItem("SelectedCourse", props.selectedCourseId)}}  >{props.button}</motion.div>
-        
+{props.disabled? 
+<motion.button className={styles.addButtonDisabled} whileHover={{scale:1.05}} disabled={props.disabled} onClick={ () => {navigate(`/${props.navigate}`); localStorage.setItem("SelectedCourse", props.selectedCourseId)}}  >{props.button}</motion.button>
+:
+<motion.button className={styles.addButton} whileHover={{scale:1.05}} disabled={props.disabled} onClick={ () => {navigate(`/${props.navigate}`); localStorage.setItem("SelectedCourse", props.selectedCourseId)}}  >{props.button}</motion.button>
+}
 </div>
 
 <TeacherInfo isclicked={teacherInfo} closeInfo={setTeacherInfo} teacherImage={props.teacherImage} name={props.name} unvan={props.unvan} />

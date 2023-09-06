@@ -21,8 +21,8 @@ const GivenCourses = () => {
   const isletme =[];
   const fenedebiyat =[];
 
-  let unvan = "Prof.Dr"
-  let teacherImage = "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg"
+  let unvan = "Prof.Dr";
+  let teacherImage = "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg";
   let courseImage = "";
   let studentCount = 0;
 
@@ -33,14 +33,14 @@ const GivenCourses = () => {
 
     setTimeout(() => {
       setLoading(false)
-    },1500)
+    },1000)
 
   },[])
 
 
   useEffect(() => {
 
-  createAPIEndpoint(EndPoints.course_teacher).get().then((res) =>{
+  createAPIEndpoint(EndPoints.course_teacher).get().then((res) =>{   // Ders tablosunun içerisinde dersi veren öğretmen bilgileri de getirilsin diye yazıldı.
     setData(res);
   
   }).catch(err => console.log(err));
@@ -64,7 +64,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true}
       courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -86,7 +86,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true}
       courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -109,7 +109,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true}
       courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -132,7 +132,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true}
       courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -154,7 +154,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true}
       courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
