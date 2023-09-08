@@ -1,0 +1,31 @@
+
+
+.container{
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 15%;
+    width: 100%;
+    /* background-color: aqua; */
+    border-bottom: 2px solid red;
+    width: 70%;
+    margin-left: 0.5rem;
+}
+
+.count{
+    /* margin-left: 0.5rem; */
+    color: green;
+
+}
+
+.code{
+
+    margin: 0px 0.5rem;
+    font-weight: 500;
+}
+
+.name{
+    font-weight: 500;
+
+}

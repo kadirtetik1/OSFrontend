@@ -79,7 +79,7 @@ endTime[i] = data?.data[i].endHours?.split(',');
 
   <div className={style.cardContainer}>
 
-  <CourseCard unvan={unvan} name={name} teacherImage={teacherImage}
+  <CourseCard unvan={unvan} name={name} teacherImage={teacherImage} clickFuntion={ () => {}}
   courseImage={courseImage} button="Dersi Güncelle" navigate="create-course" selectedCourseId={data.data[i].id}
   departmentName={data.data[i].department} period={data.data[i].semester} courseTitle={data.data[i].course_name} courseCode={data.data[i].course_code} takenKont={studentCount} openKont={data.data[i].capacity}/>
 

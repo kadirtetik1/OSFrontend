@@ -7,11 +7,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { createAPIEndpoint, EndPoints } from '../../api';
 import { BsBasket } from 'react-icons/bs';
+import AddCourseList from './components/AddCourseList';
+import { useForceUpdate } from 'framer-motion';
 
 const AddCourse = () => {
 
   let faculty1 = localStorage.getItem("department");// öğrencinin fakültesi
   const [data, setData] = useState(null);
+  const [badge, setBadge] = useState(0);
   const faculties = ["Mühendislik", "Hukuk", "Sağlık", "İşletme", "Fen-Edebiyat"];
   const muhendislik =[];
   const hukuk =[];
@@ -19,6 +22,9 @@ const AddCourse = () => {
   const isletme =[];
   const fenedebiyat =[];
   let showCourses = [];
+  let listCourses = [];
+
+  let [listOfCourses, setListOfCourses] = useState([]);
 
   let unvan = "Prof.Dr"
   let teacherImage = "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg"
@@ -35,6 +41,38 @@ useEffect(() => {
 },[])
 
 
+const incrementCount = () => {
+
+  setBadge(badge + 1);
+};
+
+
+  // const addCoursesToList = () => {
+
+  //   listCourses.push(
+  //     <AddCourseList count="1" courseCode="CMPE-226" courseName="Veri Yapıları"/>
+  //   );
+  
+  //   console.log(listCourses);
+  //   incrementCount();  // listCourses içine pushlamasını engelliyor olabilir diika et! Consoleda boyutu artmıyor.
+
+  //   console.log(listCourses.length)
+    
+  // }
+
+
+  const addCoursesToList = (code, name) => {
+
+    listCourses.push(
+      <AddCourseList count={badge+1} courseCode={code} courseName={name}/>
+    );
+
+    setListOfCourses([...listOfCourses, listCourses]); 
+    incrementCount(); 
+    
+  }
+
+
 // --- Derslerin dizilere atılma işlemi başlangıç ---
 
 for(let i =0; data?.data.length>i;i++){
@@ -49,7 +87,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => { addCoursesToList(data.data[i].courseCode, data.data[i].courseName); }}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -70,7 +108,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList();}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -91,7 +129,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList();}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -113,7 +151,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList();}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -135,7 +173,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList();}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -200,7 +238,7 @@ for(let i=0; 4>=i; i++){
 <div className={style.swiperContainerOuter}>
 <div className={style.swiperContainer}>
 
-<div className={styles.facultyTitle}>Fakültenizde Açılan Diğer Dersler</div>
+<div className={styles.facultyTitle}>Seçebileceğiniz Diğer Dersler</div>
 
   <Swiper 
       modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -223,6 +261,10 @@ for(let i=0; 4>=i; i++){
 
           </div>
 
+          <div className={styles.courseBasket1}>
+
+            <div className={styles.courseBasket2} ></div>
+
           <div className={styles.courseBasket}>
 
             <div className={styles.title}>
@@ -230,7 +272,7 @@ for(let i=0; 4>=i; i++){
 
             <div className={styles.basketIconBadge}>
 
-            <div className={styles.badgeBasket}>3</div>
+            <div className={styles.badgeBasket}>{badge}</div>
             <BsBasket color="black" size={20} />
 
             </div>
@@ -239,9 +281,27 @@ for(let i=0; 4>=i; i++){
 
             <div className={styles.basketContainer}>
 
+              <div className={styles.courseList}>
+
+
+                {/* <AddCourseList count="1" courseCode="CMPE-226" courseName="Veri Yapıları"/>
+                <AddCourseList count="2" courseCode="CMPE-341" courseName="Veri Tabanı Yönetimi"/>
+                <AddCourseList count="3" courseCode="CMPE-538" courseName="Bilgisayar Ağları"/> */}
+
+                {listOfCourses}
+               
+               
+              </div>
+
+              <div className={styles.basketButtonContainer}>
+                <button className={styles.basketButton}>Ders Sepetini Onayla</button>
+              </div>
+
             </div>
           
             
+          </div>
+
           </div>
 
         </div>

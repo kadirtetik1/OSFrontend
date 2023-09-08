@@ -288,7 +288,7 @@ const createCourse = () => {    //   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Eğer, Sele
 
       <div className={style.infos}>
         <h2></h2>
-     <CourseCard unvan={data.unvan} teacherImage={data.teacherImage} name={data.name} courseImage={data.courseImage} departmentName={department} period={semester} courseTitle={courseName} courseCode={code} takenKont={data.takenCapacity} openKont={capacity} button="Derse Kayıt Ol" />     
+     <CourseCard unvan={data.unvan} teacherImage={data.teacherImage} name={data.name} courseImage={data.courseImage} departmentName={department} period={semester} courseTitle={courseName} courseCode={code} takenKont={data.takenCapacity} openKont={capacity} button="Derse Kayıt Ol" clickFuntion={ () => {}} />     
      </div>
 
      </div>

@@ -37,18 +37,41 @@
     /* border-right: 1px solid black; */
 }
 
-.courseBasket{
+.courseBasket1{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     width: 34%;
-    height: 100%;
-    /* background-color: rgb(25, 106, 182); */
-    border: 1px solid black;
-    border-radius: 5px;
+    height: 90%;
 
 }
+
+.courseBasket2{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 40%;
+
+}
+
+.courseBasket{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 60%;
+    /* background-color: rgb(25, 106, 182); */
+    border: 2px dotted rgb(170, 170, 170);
+    border-radius: 15px;
+
+}
+
+
 
 .courseInfos{
     display: flex;
@@ -103,23 +126,61 @@
     border-radius: 15px;
     font-weight: 500;
     font-size: larger;
+    
 
 }
 
 .title{
     display: flex;
     width: 100%;
-    height: 10%;
+    height: 15%;
     flex-direction: row;
     justify-content:space-between;
     align-items:center;
+    margin-top: 1rem;
 }
 
 .basketContainer{
     width: 100%;
-    height: 90%;
-    background-color: #01b671;
+    height: 85%;
+    /* background-color: #01b671; */
+    /* border-top: 2px solid rgb(195, 195, 195); */
+    display: flex;
+    flex-direction: column;
+    
+}
 
+.courseList{
+    width: 100%;
+    height: 90%;
+    /* background-color: #01b671; */
+
+}
+
+.basketButtonContainer{
+    width: 100%;
+    height: 10%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.basketButton{
+  background-color: #01b671;
+  color: aliceblue;
+  padding: 0.5rem;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration:none;
+  border:none;
+  margin-bottom: 1rem;
+}
+
+.basketButton{
+    cursor: pointer;
 }
 
 .badgeBasket{
@@ -139,5 +200,9 @@
     width: 8%;
     justify-content: space-between;
     margin-right: 10px;
+}
+
+.courseList{
+
 }
 

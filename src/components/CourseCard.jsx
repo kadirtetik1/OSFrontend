@@ -49,7 +49,7 @@ const CourseCard = (props) => {
 {props.disabled? 
 <motion.button className={styles.addButtonDisabled} whileHover={{scale:1.05}} disabled={props.disabled} onClick={ () => {navigate(`/${props.navigate}`); localStorage.setItem("SelectedCourse", props.selectedCourseId)}}  >{props.button}</motion.button>
 :
-<motion.button className={styles.addButton} whileHover={{scale:1.05}} disabled={props.disabled} onClick={ () => {navigate(`/${props.navigate}`); localStorage.setItem("SelectedCourse", props.selectedCourseId)}}  >{props.button}</motion.button>
+<motion.button className={styles.addButton} whileHover={{scale:1.05}} disabled={props.disabled} onClick={ () => {navigate(`/${props.navigate}`); localStorage.setItem("SelectedCourse", props.selectedCourseId); props.clickFuntion(); }} >{props.button}</motion.button>
 }
 </div>
 

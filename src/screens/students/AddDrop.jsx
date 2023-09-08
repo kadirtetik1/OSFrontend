@@ -101,7 +101,7 @@ for(let i =0; data?.data.length>i;i++){
       <div className={style.cardContainer}>
     
       <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
-      courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
+      courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId} clickFuntion={ () => {}}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
       </div>
@@ -121,7 +121,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -142,7 +142,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -164,7 +164,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -186,7 +186,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     

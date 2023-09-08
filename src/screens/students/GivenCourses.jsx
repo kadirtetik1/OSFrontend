@@ -64,7 +64,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true} clickFuntion={ () => {}}
       courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -86,7 +86,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true} clickFuntion={ () => {}}
       courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -109,7 +109,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true} clickFuntion={ () => {}}
       courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -132,7 +132,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true} clickFuntion={ () => {}}
       courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -154,7 +154,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} disabled={true} clickFuntion={ () => {}}
       courseImage={courseImage} button="Derse Kayıt Ol" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
