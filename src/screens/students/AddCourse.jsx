@@ -213,22 +213,22 @@ for(let i =0; data?.data.length>i;i++){
 
     showSelectedCourse.push(
       <div className={styles.selectedCourseContainer}>
-        <div>Ders Adı: {data?.data[i].courseName}  {data?.data[i].courseCode}</div>
-        <div>Okutman: Prof.Dr. {data?.data[i].teacherName}</div>
-        <div>Verildiği Günler: {data?.data[i].courseDays}</div>
+        <div className={styles.titleContentContainer}>
+        <span className={styles.titleSelected}>Ders Adı: </span> <span className={styles.content}>{data?.data[i].courseName}  {data?.data[i].courseCode}</span>
+        </div>
+
+        <div className={styles.titleContentContainer}>
+        <span className={styles.titleSelected}>Okutman: </span> <span className={styles.content}> Prof.Dr.{data?.data[i].teacherName} </span>
+        </div>
+      
+        <div className={styles.titleContentContainer}>
+        <span className={styles.titleSelected}>Verildiği Günler: </span> <span className={styles.content}> {data?.data[i].courseDays} </span> 
+        </div>
+      
     
       </div>
       
     )
-
-    // listCourses.push(
-    //   <AddCourseList count={badge+1} courseCode={data?.data[i].courseCode} courseName={data?.data[i].courseName}/>
-    // );
-
-    // addCoursesToList(data?.data[i].courseCode,data?.data[i].courseName);
-
-    // setListOfCourses([...listOfCourses, listCourses]); 
-    // incrementCount(); 
     
   }
 

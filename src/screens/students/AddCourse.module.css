@@ -1,8 +1,8 @@
 
 
 .container{
-    /* background-color: aqua;
-    height: 100vh;
+    /* background: linear-gradient(180deg, rgb(228, 228, 228) 0%, rgb(199, 199, 199) 47%, rgb(148, 148, 148) 100%); */
+    /*height: 100vh;
     width: 100%; */
 }
 
@@ -39,12 +39,12 @@
 
 .courseBasket1{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;*/
+    /* justify-content: center;  */
     flex-direction: column;
     width: 34%;
     height: 90%;
-
+    /* background-color: rgba(136, 197, 255, 0.225); */
 }
 
 .courseBasket2{
@@ -54,7 +54,8 @@
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    height: 40%;
+    /* height: 40%; */
+    background-color: rgb(25, 106, 182);
 
 }
 
@@ -64,7 +65,7 @@
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    height: 60%;
+    height: 80%;
     /* background-color: rgb(25, 106, 182); */
     border: 2px dotted rgb(170, 170, 170);
     border-radius: 15px;
@@ -204,7 +205,24 @@
     margin-right: 10px;
 }
 
-.courseList{
+.titleContentContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid black;
+    width: 60%;
+}
 
+.titleSelected{
+    /* background-color: #01b671; */
+    width: 50%;
+    font-size: larger;
+    font-weight: 500;
+}
+
+.content{
+    /* font-weight: 500; */
+    font-size: larger;
 }
 
