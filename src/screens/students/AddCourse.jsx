@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './AddCourse.module.css'
 import style from './StudentsHome.module.css'
+import style1 from './components/AddCourseList.module.css'
 import StuNavbar from './components/StuNavbar';
 import CourseCard from '../../components/CourseCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,6 +15,8 @@ const AddCourse = () => {
 
   let faculty1 = localStorage.getItem("department");// öğrencinin fakültesi
   const [data, setData] = useState(null);
+  const [selectedCourseData, setSelectedCourseData] = useState(null);
+  let [selectedCourse, setSelectedCourse] = useState("");
   const [badge, setBadge] = useState(0);
   const faculties = ["Mühendislik", "Hukuk", "Sağlık", "İşletme", "Fen-Edebiyat"];
   const muhendislik =[];
@@ -24,12 +27,15 @@ const AddCourse = () => {
   let showCourses = [];
   let listCourses = [];
 
+  let showSelectedCourse = [];
+
   let [listOfCourses, setListOfCourses] = useState([]);
 
   let unvan = "Prof.Dr"
   let teacherImage = "https://t4.ftcdn.net/jpg/02/90/27/39/360_F_290273933_ukYZjDv8nqgpOBcBUo5CQyFcxAzYlZRW.jpg"
   let courseImage = "";
   let studentCount = 0;
+  
 
 useEffect(() => {
 
@@ -40,37 +46,53 @@ useEffect(() => {
 
 },[])
 
+const addCoursesToList = (code, name) => {
+
+  listCourses.push(
+    <AddCourseList count={badge+1} courseCode={code} courseName={name}/>
+  );
+
+  setListOfCourses([...listOfCourses, listCourses]); 
+  incrementCount(); 
+  
+}
 
 const incrementCount = () => {
 
   setBadge(badge + 1);
 };
 
+useEffect(() => {
 
-  // const addCoursesToList = () => {
-
-  //   listCourses.push(
-  //     <AddCourseList count="1" courseCode="CMPE-226" courseName="Veri Yapıları"/>
-  //   );
+  createAPIEndpoint(EndPoints.course).getById(selectedCourse).then((res) =>{ 
+    setSelectedCourseData(res);
   
-  //   console.log(listCourses);
-  //   incrementCount();  // listCourses içine pushlamasını engelliyor olabilir diika et! Consoleda boyutu artmıyor.
+  }).catch(err => console.log(err));
 
-  //   console.log(listCourses.length)
-    
-  // }
+},[])
 
 
-  const addCoursesToList = (code, name) => {
+selectedCourse = localStorage.getItem("SelectedCourse");
 
-    listCourses.push(
-      <AddCourseList count={badge+1} courseCode={code} courseName={name}/>
-    );
+console.log(selectedCourse);
+
+console.log(selectedCourseData);
+
+
+
+useEffect(() => {
+
+  if(selectedCourseData != null) {
+    addCoursesToList(selectedCourseData?.data.course_code,selectedCourseData?.data.course_name);
 
     setListOfCourses([...listOfCourses, listCourses]); 
-    incrementCount(); 
-    
+    incrementCount();   
+
+    console.log(selectedCourseData);
+    console.log("selectedCourseData");
   }
+
+},[selectedCourseData])
 
 
 // --- Derslerin dizilere atılma işlemi başlangıç ---
@@ -87,7 +109,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => { addCoursesToList(data.data[i].courseCode, data.data[i].courseName); }}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => { addCoursesToList(data.data[i].courseCode, data.data[i].courseName);}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -108,7 +130,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList();}}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList(data.data[i].courseCode, data.data[i].courseName);}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -129,7 +151,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList();}}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList(data.data[i].courseCode, data.data[i].courseName);}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -151,7 +173,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList();}}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList(data.data[i].courseCode, data.data[i].courseName);}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -173,7 +195,7 @@ for(let i =0; data?.data.length>i;i++){
     
       <div className={style.cardContainer}>
     
-      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList();}}
+      <CourseCard unvan={unvan} name={data.data[i].teacherName} teacherImage={teacherImage} clickFuntion={ () => {addCoursesToList(data.data[i].courseCode, data.data[i].courseName);}}
       courseImage={courseImage} button="Dersi Sepete Ekle" navigate="add-course" selectedCourseId={data.data[i].courseId}
       departmentName={data.data[i].departmentName} period={data.data[i].semester} courseTitle={data.data[i].courseName} courseCode={data.data[i].courseCode} takenKont={studentCount} openKont={data.data[i].openCapacity}/>
     
@@ -182,6 +204,32 @@ for(let i =0; data?.data.length>i;i++){
       </SwiperSlide>
       
       );
+  }
+
+
+  if(data?.data[i].courseId===selectedCourse){
+
+
+
+    showSelectedCourse.push(
+      <div className={styles.selectedCourseContainer}>
+        <div>Ders Adı: {data?.data[i].courseName}  {data?.data[i].courseCode}</div>
+        <div>Okutman: Prof.Dr. {data?.data[i].teacherName}</div>
+        <div>Verildiği Günler: {data?.data[i].courseDays}</div>
+    
+      </div>
+      
+    )
+
+    // listCourses.push(
+    //   <AddCourseList count={badge+1} courseCode={data?.data[i].courseCode} courseName={data?.data[i].courseName}/>
+    // );
+
+    // addCoursesToList(data?.data[i].courseCode,data?.data[i].courseName);
+
+    // setListOfCourses([...listOfCourses, listCourses]); 
+    // incrementCount(); 
+    
   }
 
 }
@@ -229,6 +277,10 @@ for(let i=0; 4>=i; i++){
           <div className={styles.courseContainer}>
 
             <div className={styles.courseInfos}>
+
+            <div className={styles.facultyTitle}>Seçtiğiniz Dersin Bilgileri</div>
+
+            <div>{showSelectedCourse}</div>
 
             </div>
 
@@ -288,8 +340,13 @@ for(let i=0; 4>=i; i++){
                 <AddCourseList count="2" courseCode="CMPE-341" courseName="Veri Tabanı Yönetimi"/>
                 <AddCourseList count="3" courseCode="CMPE-538" courseName="Bilgisayar Ağları"/> */}
 
-                {listOfCourses}
-               
+            {/* <div className={style1.container}>
+              <h3 className={style1.count}>{1}. </h3>
+              <h3 className={style1.code}>{selectedCourseData?.data.courseCode} </h3>
+              <h3 className={style1.name}>{selectedCourseData?.data.courseName}</h3>
+            </div> */}
+
+          {listOfCourses}
                
               </div>
 

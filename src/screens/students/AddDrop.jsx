@@ -90,7 +90,13 @@ useEffect(() => {
 
 for(let i =0; data?.data.length>i;i++){
 
+  // const showCourse = () => {
+    
+  //   localStorage.setItem("showCourse",data.data[i].courseId);
+  // }
+
   if(data?.data[i].facultyName===faculties[0]){
+
 
     courseImage = "https://web.harran.edu.tr/assets/uploads/sites/57/slides/ef38464dd6a24fa7bb675710d466fb31.jpg"
     

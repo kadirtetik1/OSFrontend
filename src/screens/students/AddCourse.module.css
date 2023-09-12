@@ -75,12 +75,13 @@
 
 .courseInfos{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
     flex-direction: column;
-    width: 100%;
+    width: 90%;
     height: 35%;
-    background-color: beige;
+    /* background-color: beige; */
+
     /* background-color: rgb(182, 25, 77); */
     /* border-bottom: 1px solid black; */
 
@@ -154,6 +155,7 @@
     width: 100%;
     height: 90%;
     /* background-color: #01b671; */
+    overflow-y: scroll;
 
 }
 
